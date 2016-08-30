@@ -51,11 +51,11 @@ Copyright (c) 2013 Daniel Eden
     transform: translateY(-30px);
   }
 
-  60% {
+  /*60% {
     -webkit-transform: translateY(-15px);
 	-moz-transform: translateY(-15px);
     transform: translateY(-15px);
-  }
+  }*/
 }
 
 @keyframes bounce {
