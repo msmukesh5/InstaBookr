@@ -1,0 +1,2 @@
+class DaySlot < ApplicationRecord
+end

@@ -1,0 +1,36 @@
+# development:
+#   database: InstaBookr_development
+#   port: 5432
+#   adapter: postgresql
+#   encoding: unicode
+#   pool: 5
+#   host: localhost
+#   username: mukesh
+#   password: ""
+development:
+  adapter: postgresql
+  encoding: unicode
+  database: InstaBookr_development
+  host: localhost
+  port: 5432
+  pool: 5
+  username: mukeshsharma
+  password: 
+
+test:
+  adapter: postgresql
+  encoding: unicode
+  database: InstaBookr_test
+  pool: 5
+  username: mukeshsharma
+  password:
+
+# production:
+#   adapter: postgresql
+#   encoding: unicode
+#   host: ec2-54-235-125-38.compute-1.amazonaws.com
+#   database: InstaBookr_production
+#   pool: 5
+#   port: 5432
+#   username: lsstvsowupvxwn
+#   password: eZKJalNjURXAd-Htz8leXg5xJp
