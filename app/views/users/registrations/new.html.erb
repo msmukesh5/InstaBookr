@@ -1,28 +1,43 @@
-<h2>Sign up</h2>
+<h2>Register to Instabookr</h2>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= devise_error_messages! %>
 
   <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true %>
+    <%= f.label "First name* " %><br />
+    <%= f.text_field :first_name, autofocus: true, value: resource.first_name,required: true %>
   </div>
 
+  <div class="field">
+    <%= f.label "Last name* " %><br />
+    <%= f.text_field :last_name, value: resource.last_name ,required: true%>
+  </div>
+  <div class="field">
+    <%= f.label "Email* " %><br />
+    <%= f.email_field :email, required: true%>
+  </div>
+  <div class="field">
+    <%= f.label "Contact number" %><br />
+    <%= f.text_field :contact_number1%>
+  </div>
   <div class="field">
     <%= f.label :password %>
     <% if @minimum_password_length %>
     <em>(<%= @minimum_password_length %> characters minimum)</em>
     <% end %><br />
-    <%= f.password_field :password, autocomplete: "off" %>
+    <%= f.password_field :password, autocomplete: "off", required: true %>
   </div>
 
   <div class="field">
     <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off" %>
+    <%= f.password_field :password_confirmation, autocomplete: "off", required: true %>
   </div>
 
+  
+
+
   <div class="actions">
-    <%= f.submit "Sign up" %>
+    <%= f.submit "Register" %>
   </div>
 <% end %>
 

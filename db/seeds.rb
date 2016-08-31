@@ -5,3 +5,12 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+ServiceType.find_or_create_by(name: 'Spa')
+ServiceType.find_or_create_by(name: 'Gym')
+ServiceType.find_or_create_by(name: 'Salon')
+ServiceType.find_or_create_by(name: 'Sports Centre')
+
+Location.find_or_create_by(location: 'New Town')
+Location.find_or_create_by(location: 'Salt Lake')
+Location.find_or_create_by(location: 'Sambalpur')

@@ -1,1 +1,4 @@
-<h2>This would be our home page</h2>
+<h2>Welcome,</h2><h4>&nbsp;<%=@user.first_name%> &nbsp; <%=@user.last_name %><h4>
+
+<%= link_to("Create Shop", {:action => 'new', :controller => 'shops', :user_id => @user.id}, :class => 'btn-success') %>
+

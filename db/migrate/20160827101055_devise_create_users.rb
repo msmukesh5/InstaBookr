@@ -28,7 +28,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.0]
 
       t.string   :first_name  
       t.string   :last_name
-      t.string   :uuid, :limit => 20,   :null => false
+      t.string   :uuid, :limit => 20,   :null => false, :default => ""
       t.string   :contact_number1,      :limit => 10
       t.string   :contact_number2,      :limit => 10
       t.string   :loyality_discount_at, :default => "[]"
@@ -39,7 +39,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.0]
       t.boolean  :is_owner,           :default => false
       t.boolean  :is_first_logged_in,   :default => false
       t.boolean  :is_super_user,      :default => false
-      t.string   :user_last_location,   :default => ""
+      t.integer   :user_last_location_id
       t.string   :status,               :default => "Active"
 
       # Lockable

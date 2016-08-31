@@ -6,9 +6,11 @@ class User < ApplicationRecord
          :confirmable, :lockable
 
     has_many :bookings
-    belongs_to :location
+    # belongs_to :location
     has_many :carts
     has_many :shops
+
+    
     
 
 end
