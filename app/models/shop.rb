@@ -6,5 +6,6 @@ class Shop < ApplicationRecord
 	has_many :offers
 	has_many :services
 	has_many :carts
+	has_many :bookings
 	
 end

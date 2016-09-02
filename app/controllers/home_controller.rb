@@ -1,7 +1,7 @@
 class HomeController < ApplicationController
 
 	# skip_before_filter :authenticate_user!, :only => :index
-	# layout 'home_layout', only: [:index]
+	layout 'home_layout'
 
 	def index
 			
@@ -9,6 +9,12 @@ class HomeController < ApplicationController
 		@user = User.find(current_user.id)
 		puts @user.inspect
 
+		if !@user.shops.blank?
+			@shops = @user.shops.first
+			@bookings = @shops.bookings
+		end
+		
 	end
+
 
 end

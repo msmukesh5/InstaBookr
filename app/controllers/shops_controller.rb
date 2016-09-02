@@ -4,10 +4,23 @@ class ShopsController < ApplicationController
 
 		if !current_user.shops.empty?
 			@shops = current_user.shops
-		else 
-			redirect_to(:controller => 'home', :action => 'index')	
 		end
-		
+	end
+
+	def edit
+		@shop = Shop.find(params[:id])
+	end
+
+	def show
+		@shop = Shop.find(params[:id])
+	end
+
+	def update
+		@shop = Shop.find(params[:id])
+		if @shop.update_attributes(new_shop_params)
+        	flash[:notice] = "Shop updated successfully"
+			redirect_to(:action => 'index', :id => @gym.id)
+		end
 	end
 
 	def new
@@ -34,6 +47,20 @@ class ShopsController < ApplicationController
        		render('new')
     	end
   	end
+
+  	def delete
+    @shop = Shop.find(params[:id])
+  end
+
+  def destroy
+    shop = Shop.find(params[:id])
+    shop.status = "Deactive"
+    shop.save
+    flash[:notice] = "shop #{shop.name} destroyed successfully"
+    redirect_to(:action => 'index')
+  end
+
+
 
   	private
 	    def new_shop_params

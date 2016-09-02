@@ -18,6 +18,7 @@ ActiveRecord::Schema.define(version: 20160829042928) do
   create_table "bookings", force: :cascade do |t|
     t.string   "uuid",          limit: 20,                    null: false
     t.integer  "user_id",                                     null: false
+    t.integer  "shop_id",                                     null: false
     t.integer  "service_id",                                  null: false
     t.string   "time_slots",               default: "[]"
     t.string   "booking_token"
@@ -27,6 +28,7 @@ ActiveRecord::Schema.define(version: 20160829042928) do
     t.datetime "created_at",                                  null: false
     t.datetime "updated_at",                                  null: false
     t.index ["service_id"], name: "index_bookings_on_service_id", using: :btree
+    t.index ["shop_id"], name: "index_bookings_on_shop_id", using: :btree
     t.index ["user_id"], name: "index_bookings_on_user_id", using: :btree
   end
 

@@ -1,9 +1,9 @@
 <div id="page-wrapper">
 	<div class="graphs">
-		<h3 class="blank1">Shop Creation</h3>
+		<h3 class="blank1">Edit Shop <%= @shop.id %></h3>
 		<%= form_for(:shop, :url => {:action => 'create', :id => @shop.id}) do |f| %>
 
-			<% @action = "new" %>
+			<% @action = "edit" %>
 
 		    <%= render(:partial => "form", :locals => {:f => f}) %>
 		    <div class="row">
