@@ -8,7 +8,8 @@ class ShopsController < ApplicationController
 	end
 
 	def edit
-		@shop = Shop.find(params[:id])
+		@shop = Shop.find(params[:shop_id])
+		@user = User.find(current_user.id)
 	end
 
 	def show
@@ -19,14 +20,11 @@ class ShopsController < ApplicationController
 		@shop = Shop.find(params[:id])
 		if @shop.update_attributes(new_shop_params)
         	flash[:notice] = "Shop updated successfully"
-			redirect_to(:action => 'index', :id => @gym.id)
+			redirect_to(:action => 'index', :id => @shop.id)
 		end
 	end
 
 	def new
-		# current_user.is_owner = true if current_user.is_owner = false
-		# current_user.save
-		# puts current_user.inspect
 		@user = User.find(current_user.id)
 		@user.is_owner = true if !@user.is_owner
 		@user.save
@@ -54,7 +52,7 @@ class ShopsController < ApplicationController
 
   def destroy
     shop = Shop.find(params[:id])
-    shop.status = "Deactive"
+    shop.status = "DEACTIVE"
     shop.save
     flash[:notice] = "shop #{shop.name} destroyed successfully"
     redirect_to(:action => 'index')

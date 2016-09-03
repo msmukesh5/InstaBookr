@@ -25,19 +25,22 @@
 							</tr>
 						</thead>
 						<tbody>
+							<% serial_no = 0%>
 							<% @shops.each do |obj| %>
-								<tr>
-									<td><%= obj.id %></td>
-									<td><%= obj.name %></td>
-									<% location = Location.find(obj.location_id)%>
-									<td><%= location.location%></td>
-									<td><%= current_user.email %></td>
-									<td><%= obj.status %></td>
-									<td><%= link_to("Show", {:action => 'show', :id => obj.id}, :class => 'action show') %>
-								        <%= link_to("Edit", {:action => 'edit', :id => obj.id}, :class => 'action edit') %>
-								        <%= link_to("Delete", {:action => 'delete', :id => obj.id}, :class => 'action delete') %>
-								    </td>
-								</tr>
+								<% if obj.status != 'DEACTIVE'%>
+									<tr>
+										<td><%= serial_no+=1 %></td>
+										<td><%= obj.name %></td>
+										<% location = Location.find(obj.location_id)%>
+										<td><%= location.location%></td>
+										<td><%= current_user.email %></td>
+										<td><%= obj.status %></td>
+										<td><%= link_to("Show", {:action => 'show', :id => obj.id}, :class => 'action show') %>
+									        <%= link_to("Edit", {:action => 'edit', :shop_id => obj.id}, :class => 'action edit') %>
+									        <%= link_to("Delete", {:action => 'delete', :id => obj.id}, :class => 'action delete') %>
+									    </td>
+									</tr>
+								<% end %>
 							<% end %>
 						</tbody>
 					</table>

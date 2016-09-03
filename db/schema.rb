@@ -123,15 +123,15 @@ ActiveRecord::Schema.define(version: 20160829042928) do
   end
 
   create_table "shops", force: :cascade do |t|
-    t.string   "name",                                                                    null: false
-    t.integer  "user_id",                                                                 null: false
-    t.integer  "service_type_id",                                                         null: false
+    t.string   "name",                                                                         null: false
+    t.integer  "user_id",                                                                      null: false
+    t.integer  "service_type_id",                                                              null: false
     t.string   "icon",            limit: 500
     t.string   "banner",          limit: 500
-    t.string   "uuid",            limit: 20,                                              null: false
+    t.string   "uuid",            limit: 20,                                                   null: false
     t.string   "time_slot_ids",                                        default: "[]"
     t.string   "day_slot_ids",                                         default: "[]"
-    t.string   "status",                                               default: "Active"
+    t.string   "status",                                               default: "UNCONFIRMED"
     t.string   "contact_number1", limit: 10
     t.string   "contact_number2", limit: 10
     t.integer  "location_id"
@@ -141,8 +141,8 @@ ActiveRecord::Schema.define(version: 20160829042928) do
     t.string   "caption",                                              default: ""
     t.string   "details",         limit: 1000,                         default: ""
     t.string   "address",         limit: 1000
-    t.datetime "created_at",                                                              null: false
-    t.datetime "updated_at",                                                              null: false
+    t.datetime "created_at",                                                                   null: false
+    t.datetime "updated_at",                                                                   null: false
     t.index ["location_id"], name: "index_shops_on_location_id", using: :btree
     t.index ["service_type_id"], name: "index_shops_on_service_type_id", using: :btree
     t.index ["user_id"], name: "index_shops_on_user_id", using: :btree

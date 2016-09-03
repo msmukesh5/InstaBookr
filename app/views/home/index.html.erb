@@ -68,8 +68,6 @@
 					</div>
 
 					<div class="panel-body no-padding" style="display: block;">
-
-						<%= link_to("Add New Shop", {:action => 'new'}, :class => "btn-success btn") %> <br/> <br/>
 						<table class="table table-striped">
 							<thead>
 								<tr class="warning">
@@ -78,6 +76,7 @@
 									<th>Email</th>
 									<th>Date and Time</th>
 									<th>Status</th>
+									<th>Contact number</th>
 									<th>Actions</th>
 								</tr>
 							</thead>
@@ -90,10 +89,9 @@
 										<td><%= usr.email %></td>
 									    <td><%= obj.date%></td>
 										<td><%= obj.status %></td>
-										<td><%= link_to("Show", {:action => 'show', :id => obj.id}, :class => 'action show') %>
-									        <%= link_to("Edit", {:action => 'edit', :id => obj.id}, :class => 'action edit') %>
-									        <%= link_to("Delete", {:action => 'delete', :id => obj.id}, :class => 'action delete') %>
-									    </td>
+										<td><%= usr.contact_number1%></td>
+										<td><button class="btn-danger">Confirm</button>
+											<button class="btn-danger">Served</button></td>
 									</tr>
 								<% end %>
 							</tbody>

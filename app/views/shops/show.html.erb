@@ -9,7 +9,7 @@
 					<div class="panel-ctrls" data-actions-container="" data-action-collapse="{&quot;target&quot;: &quot;.panel-body&quot;}"><shopn class="button-icon has-bg"><i class="ti ti-angle-down"></i></shopn></div>
 				</div>
 				<div class="panel-body no-padding" style="display: block;">
-					<%= link_to("Edit sport centre", {:action => 'edit', :user => @shop.id}, :class => "btn-success btn") %> &nbsp; &nbsp; &nbsp; &nbsp;
+					<%= link_to("Edit shop", {:action => 'edit', :user_id => current_user.id, :shop_id => @shop.id}, :class => "btn-success btn") %> &nbsp; &nbsp; &nbsp; &nbsp;
 					<%= link_to("<< shop list", {:action => 'index'}, :class => "btn-danger btn") %> <br/> <br/>
 					<table class="table">
 						<thead>
@@ -42,59 +42,55 @@
 								<td><%= @shop.banner %></td>
 							</tr>
 							<tr>
-								<th>Offer id</th>
-								<td><%= @shop.offer_id %></td>
+								<th>Service Types ID</th>
+								<td><%= @shop.service_type_id %></td>
 							</tr>
 							<tr class="info">
-								<th>Service Types ID</th>
-								<td><%= @shop.service_type_ids %></td>
-							</tr>
-							<tr>
 								<th>Timeslot ID</th>
 								<td><%= @shop.time_slot_ids %></td>
 							</tr>
 
-							<tr class="info">
+							<tr>
 								<th>Contact Number 1</th>
 								<td><%= @shop.contact_number1 %></td>
 							</tr>
 							
-							<tr>
+							<tr class="info">
 								<th>Contact Number 2 </th>
 								<td><%= @shop.contact_number2 %></td>
 							</tr>
 							
-							<tr class="info">
+							<tr>
 								<th>Status</th>
 								<td><%= @shop.status %></td>
 							</tr>
 							
-							<tr>
+							<tr class="info">
 								<th> Location id</th>
 								<td><%= @shop.location_id %></td>
 							</tr>
 							
-							<tr class="info">
-								<th>Latitude</th>
-								<td><%= @shop.latitide %></td>
-							</tr>
 							<tr>
+								<th>Latitude</th>
+								<td><%= @shop.latitude %></td>
+							</tr>
+							<tr class="info">
 								<th> Longitude</th>
 								<td><%= @shop.longitude %></td>
 							</tr>
-							<tr class="info">
+							<tr >
 								<th>Booking Count</th>
 								<td><%= @shop.booking_count %></td>
 							</tr>
-							<tr>
+							<tr class="info">
 								<th> Caption </th>
 								<td><%= @shop.caption %></td>
 							</tr>
-							<tr class="info">
+							<tr >
 								<th>Details	</th>
 								<td><%= @shop.details %></td>
 							</tr>
-							<tr>
+							<tr class="info">
 								<th>Address </th>
 								<td><%= @shop.address %></td>
 							</tr>

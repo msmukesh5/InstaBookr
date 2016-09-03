@@ -10,7 +10,7 @@ class CreateShops < ActiveRecord::Migration[5.0]
     	t.string :uuid, :limit => 20, :null => false
         t.string :time_slot_ids, :default => "[]"
         t.string :day_slot_ids, :default => "[]"
-        t.string :status, :default => "Active"
+        t.string :status, :default => "UNCONFIRMED"
     	t.string :contact_number1, :limit => 10
     	t.string :contact_number2, :limit => 10
     	t.integer :location_id
