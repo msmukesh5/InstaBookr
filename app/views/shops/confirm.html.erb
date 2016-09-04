@@ -3,7 +3,7 @@
 		<div class="xs tabls">
 			<div class="panel panel-info" data-widget="{&quot;draggable&quot;: &quot;false&quot;}" data-widget-static="">
 				<div class="panel-heading">
-					<% if !@confirmation %>
+					<% if @confirmation == "true" %>
 						<h2> Confirm Shop </h2>
 					<% else %>
 						<h2> Unconfirm Shop </h2>
@@ -12,7 +12,7 @@
 				</div>
 				<%= form_for(:shop, :url => {:action => 'toggle_confirmation', :shop_id => @shop.id, :confirmation => @confirmation}) do |f| %>
 
-					<% if !@confirmation %>
+					<% if @confirmation == "true" %>
 						<p>Are you sure you want to confirm the shop ?</p>
 					<% else %>
 						<p>Are you sure you want to Unconfirm the shop ?</p>
@@ -20,7 +20,7 @@
 					<br/>
 				    <p> <div class="info"><%= @shop.name %></p>
 				    <br/>
-				    <% if !@confirmation %>
+				    <% if @confirmation == "true" %>
 				    	<%= submit_tag("Confirm", :class => "btn-success btn") %>
 					<% else %>
 				    	<%= submit_tag("Unconfirm", :class => "btn-danger btn") %>

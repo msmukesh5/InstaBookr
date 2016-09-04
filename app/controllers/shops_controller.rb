@@ -37,6 +37,7 @@ class ShopsController < ApplicationController
 		@user = User.find(current_user.id)
 		puts @user.inspect
 		@shop = Shop.find(params[:shop_id])
+		puts params.inspect
 		@confirmation = params[:confirmation]
 		if !@user.is_super_user
 			flash[:notice] = "You dont have privilege to confirm/unconfirm a shop"
@@ -48,10 +49,12 @@ class ShopsController < ApplicationController
 		shop = Shop.find(params[:shop_id])
 		puts shop.inspect
 		puts params.inspect
-		if params[:confirmation]
+		if params[:confirmation] == "true"
+			puts "activating"
 			shop.status = "Active"
 			shop.save
 		else
+			puts "deactivating"
 			shop.status = "UNCONFIRMED"
 			shop.save
 		end

@@ -38,9 +38,9 @@
 										    <td><%= obj.location.location%></td>
 											<td><%= obj.status %></td>
 											<td><% if obj.status == "Active" %>
-												<%= link_to("Unconfirm", {:controller => 'shops', :action => 'confirm', :shop_id => obj.id, :confirmation => false}, :class => 'btn-success btn') %>
+												<%= link_to("Unconfirm", {:controller => 'shops', :action => 'confirm', :shop_id => obj.id, :confirmation => false}, :class => 'btn-danger btn') %>
 												<%elsif obj.status == "UNCONFIRMED" %>
-													<%= link_to("Confirm", {:controller => 'shops',:action => 'confirm', :shop_id => obj.id, :confirmation => true}, :class => 'btn-danger btn') %>
+													<%= link_to("Confirm", {:controller => 'shops',:action => 'confirm', :shop_id => obj.id, :confirmation => true}, :class => 'btn-success btn') %>
 												<%end%>
 											</td>
 										</tr>
