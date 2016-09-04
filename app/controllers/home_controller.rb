@@ -12,11 +12,20 @@ class HomeController < ApplicationController
 		# puts current_user.inspect
 		@user = User.find(current_user.id)
 		puts @user.inspect
+		if @user.is_super_user
 
-		if !@user.shops.blank?
-			@shops = @user.shops.last
-			@bookings = @shops.bookings
+			@shops = Shop.all
+			puts @shops.inspect
+
+		elsif @user.is_owner
+			if !@user.shops.blank?
+				@shops = @user.shops.first
+				@bookings = @shops.bookings
+			end
+		else
+			flash[:notice] = "For Bookings, please login through our Application"
 		end
+			
 		
 	end
 

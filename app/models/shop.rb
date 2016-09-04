@@ -7,5 +7,7 @@ class Shop < ApplicationRecord
 	has_many :services
 	has_many :carts
 	has_many :bookings
+
+	default_scope {order('id ASC')}
 	
 end

@@ -33,6 +33,31 @@ class ShopsController < ApplicationController
 		@shop = Shop.new
 	end
 
+	def confirm
+		@user = User.find(current_user.id)
+		puts @user.inspect
+		@shop = Shop.find(params[:shop_id])
+		@confirmation = params[:confirmation]
+		if !@user.is_super_user
+			flash[:notice] = "You dont have privilege to confirm/unconfirm a shop"
+			redirect_to(:controller => 'home', :action => 'index')
+		end
+	end
+
+	def toggle_confirmation
+		shop = Shop.find(params[:shop_id])
+		puts shop.inspect
+		puts params.inspect
+		if params[:confirmation]
+			shop.status = "Active"
+			shop.save
+		else
+			shop.status = "UNCONFIRMED"
+			shop.save
+		end
+		redirect_to(:controller => 'home', :action => 'index')
+	end
+
 	def create
     	@shop = Shop.new(new_shop_params)
     	@shop.uuid = gen_uuid
@@ -47,16 +72,16 @@ class ShopsController < ApplicationController
   	end
 
   	def delete
-    @shop = Shop.find(params[:id])
-  end
+    	@shop = Shop.find(params[:id])
+  	end
 
-  def destroy
-    shop = Shop.find(params[:id])
-    shop.status = "DEACTIVE"
-    shop.save
-    flash[:notice] = "shop #{shop.name} destroyed successfully"
-    redirect_to(:action => 'index')
-  end
+  	def destroy
+    	shop = Shop.find(params[:id])
+    	shop.status = "DEACTIVE"
+    	shop.save
+    	flash[:notice] = "shop #{shop.name} destroyed successfully"
+    	redirect_to(:action => 'index')
+  	end
 
 
 

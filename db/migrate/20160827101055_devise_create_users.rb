@@ -26,8 +26,9 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.0]
       t.datetime :confirmation_sent_at
       t.string   :unconfirmed_email # Only if using reconfirmable
 
-      t.string   :first_name  
+      t.string   :first_name
       t.string   :last_name
+      t.string   :gender
       t.string   :uuid, :limit => 20,   :null => false, :default => ""
       t.string   :contact_number1,      :limit => 10
       t.string   :contact_number2,      :limit => 10

@@ -172,6 +172,7 @@ ActiveRecord::Schema.define(version: 20160829042928) do
     t.string   "unconfirmed_email"
     t.string   "first_name"
     t.string   "last_name"
+    t.string   "gender"
     t.string   "uuid",                   limit: 20, default: "",       null: false
     t.string   "contact_number1",        limit: 10
     t.string   "contact_number2",        limit: 10

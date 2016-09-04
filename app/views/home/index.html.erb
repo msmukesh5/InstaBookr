@@ -1,108 +1,164 @@
 <div id="page-wrapper">
 	<h2>Welcome,</h2><h4>&nbsp;<%=@user.first_name%> &nbsp; <%=@user.last_name %><h4>
-	<% if !@user.shops.empty? %>
-	
-		<% groth_in_per = 50%>
-		<% new_users = 70 %>
-		<% new_visitors = 30 %>
-		<% profit = 40 %>
+
+	<% if @user.is_super_user%>
 
 		<div class="graphs">
-			<div class="col_3">
-				<div class="col-md-3 widget widget1">
-					<div class="r3_counter_box">
-						<i class="fa fa-mail-forward"></i>
-						<div class="stats">
-							  <h5><%= groth_in_per %><span>%</span></h5>
-							  <div class="grow">
-								<p>Growth</p>
-							  </div>
+				<div class="xs tabls">
+				
+					<div class="panel panel-warning" data-widget="{&quot;draggable&quot;: &quot;false&quot;}" data-widget-static="">
+						<div class="panel-heading">
+							<h2>Shops List</h2>
+							<div class="panel-ctrls" data-actions-container="" data-action-collapse="{&quot;target&quot;: &quot;.panel-body&quot;}"><span class="button-icon has-bg"><i class="ti ti-angle-down"></i></span></div>
 						</div>
-					</div>
-				</div>
 
-				<div class="col-md-3 widget widget1">
-					<div class="r3_counter_box">
-						<i class="fa fa-users"></i>
-						<div class="stats">
-						  <h5><%= new_users %><span>%</span></h5>
-						  <div class="grow grow1">
-							<p>New Users</p>
-						  </div>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-3 widget widget1">
-					<div class="r3_counter_box">
-						<i class="fa fa-eye"></i>
-						<div class="stats">
-						  <h5><%= new_visitors %> <span>%</span></h5>
-						  <div class="grow grow3">
-							<p>Visitors</p>
-						  </div>
-						</div>
-					</div>
-			 	</div>
-			 	<div class="col-md-3 widget">
-					<div class="r3_counter_box">
-						<i class="fa fa-usd"></i>
-						<div class="stats">
-					  		<h5><%= profit %> <span>%</span></h5>
-					  		<div class="grow grow2">
-								<p>Profit</p>
-					  		</div>
-						</div>
-					</div>
-				</div>
-				<div class="clearfix"> </div>
-			</div>
-		</div>
-		<div class="graphs">
-			<h3 class="blank1">Bookings</h3>
-			<div class="xs tabls">
-			
-				<div class="panel panel-warning" data-widget="{&quot;draggable&quot;: &quot;false&quot;}" data-widget-static="">
-					<div class="panel-heading">
-						<h2>User Bookings</h2>
-						<div class="panel-ctrls" data-actions-container="" data-action-collapse="{&quot;target&quot;: &quot;.panel-body&quot;}"><span class="button-icon has-bg"><i class="ti ti-angle-down"></i></span></div>
-					</div>
-
-					<div class="panel-body no-padding" style="display: block;">
-						<table class="table table-striped">
-							<thead>
-								<tr class="warning">
-									<th>#</th>
-									<th>Name</th>
-									<th>Email</th>
-									<th>Date and Time</th>
-									<th>Status</th>
-									<th>Contact number</th>
-									<th>Actions</th>
-								</tr>
-							</thead>
-							<tbody>
-								<% @bookings.each do |obj| %>
-									<tr>
-										<td><%= obj.id %></td>
-										<%usr = User.find(obj.user_id)%>
-										<td><%= usr.first_name + usr.last_name %></td>
-										<td><%= usr.email %></td>
-									    <td><%= obj.date%></td>
-										<td><%= obj.status %></td>
-										<td><%= usr.contact_number1%></td>
-										<td><button class="btn-danger">Confirm</button>
-											<button class="btn-danger">Served</button></td>
+						<div class="panel-body no-padding" style="display: block;">
+							<table class="table table-striped">
+								<thead>
+									<tr class="warning">
+										<th>#</th>
+										<th>Shop</th>
+										<th>User name</th>
+										<th>Service</th>
+										<th>Contact number</th>
+										<th>Location</th>
+										<th>Status</th>
+										<th>Actions</th>
 									</tr>
-								<% end %>
-							</tbody>
-						</table>
+								</thead>
+								<tbody>
+									<% @shops.each do |obj| %>
+										<tr>
+											<td><%= obj.id %></td>
+											<td><%= obj.name %></td>
+											<%usr = User.find(obj.user_id)%>
+											<td><%= usr.first_name + usr.last_name %></td>
+											<td><%= obj.service_type.name %></td>
+											<td><%= usr.contact_number1 %></td>
+										    <td><%= obj.location.location%></td>
+											<td><%= obj.status %></td>
+											<td><% if obj.status == "Active" %>
+												<%= link_to("Unconfirm", {:controller => 'shops', :action => 'confirm', :shop_id => obj.id, :confirmation => false}, :class => 'btn-success btn') %>
+												<%elsif obj.status == "UNCONFIRMED" %>
+													<%= link_to("Confirm", {:controller => 'shops',:action => 'confirm', :shop_id => obj.id, :confirmation => true}, :class => 'btn-danger btn') %>
+												<%end%>
+											</td>
+										</tr>
+									<% end %>
+								</tbody>
+							</table>
+						</div>
 					</div>
 				</div>
 			</div>
-		</div>
 
 	<% else %>
-		<!-- user has no shops so there would be link to create a shop initially -->
-		<%= render '/home/shop_creation_link' %>
+		<% if !@user.shops.empty? %>
+		
+			<% groth_in_per = 50%>
+			<% new_users = 70 %>
+			<% new_visitors = 30 %>
+			<% profit = 40 %>
+
+			<div class="graphs">
+				<div class="col_3">
+					<div class="col-md-3 widget widget1">
+						<div class="r3_counter_box">
+							<i class="fa fa-mail-forward"></i>
+							<div class="stats">
+								  <h5><%= groth_in_per %><span>%</span></h5>
+								  <div class="grow">
+									<p>Growth</p>
+								  </div>
+							</div>
+						</div>
+					</div>
+
+					<div class="col-md-3 widget widget1">
+						<div class="r3_counter_box">
+							<i class="fa fa-users"></i>
+							<div class="stats">
+							  <h5><%= new_users %><span>%</span></h5>
+							  <div class="grow grow1">
+								<p>New Users</p>
+							  </div>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-3 widget widget1">
+						<div class="r3_counter_box">
+							<i class="fa fa-eye"></i>
+							<div class="stats">
+							  <h5><%= new_visitors %> <span>%</span></h5>
+							  <div class="grow grow3">
+								<p>Visitors</p>
+							  </div>
+							</div>
+						</div>
+				 	</div>
+				 	<div class="col-md-3 widget">
+						<div class="r3_counter_box">
+							<i class="fa fa-usd"></i>
+							<div class="stats">
+						  		<h5><%= profit %> <span>%</span></h5>
+						  		<div class="grow grow2">
+									<p>Profit</p>
+						  		</div>
+							</div>
+						</div>
+					</div>
+					<div class="clearfix"> </div>
+				</div>
+			</div>
+			<div class="graphs">
+				<h3 class="blank1">Bookings</h3>
+				<div class="xs tabls">
+				
+					<div class="panel panel-warning" data-widget="{&quot;draggable&quot;: &quot;false&quot;}" data-widget-static="">
+						<div class="panel-heading">
+							<h2>User Bookings</h2>
+							<div class="panel-ctrls" data-actions-container="" data-action-collapse="{&quot;target&quot;: &quot;.panel-body&quot;}"><span class="button-icon has-bg"><i class="ti ti-angle-down"></i></span></div>
+						</div>
+
+						<div class="panel-body no-padding" style="display: block;">
+							<table class="table table-striped">
+								<thead>
+									<tr class="warning">
+										<th>#</th>
+										<th>Name</th>
+										<th>Gender</th>
+										<th>Shop Name</th>
+										<th>Date and Time</th>
+										<th>Status</th>
+										<th>Contact number</th>
+										<th>Actions</th>
+									</tr>
+								</thead>
+								<tbody>
+									<% @bookings.each do |obj| %>
+										<tr>
+											<td><%= obj.id %></td>
+											<%usr = User.find(obj.user_id)%>
+											<td><%= usr.first_name + usr.last_name %></td>
+											<td><%= usr.gender %></td>
+											<td><%= obj.shop.name%></td>
+										    <td><%= obj.date%></td>
+											<td><%= obj.status %></td>
+											<td><%= usr.contact_number1%></td>
+											<td><button class="btn-danger">Confirm</button>
+												<button class="btn-danger">Served</button></td>
+										</tr>
+									<% end %>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		<% else %>
+			<!-- user has no shops so there would be link to create a shop initially -->
+			<%= render '/home/shop_creation_link' %>
+		<% end %>
 	<% end %>
 </div>

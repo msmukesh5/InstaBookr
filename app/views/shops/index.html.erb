@@ -35,9 +35,9 @@
 										<td><%= location.location%></td>
 										<td><%= current_user.email %></td>
 										<td><%= obj.status %></td>
-										<td><%= link_to("Show", {:action => 'show', :id => obj.id}, :class => 'action show') %>
-									        <%= link_to("Edit", {:action => 'edit', :shop_id => obj.id}, :class => 'action edit') %>
-									        <%= link_to("Delete", {:action => 'delete', :id => obj.id}, :class => 'action delete') %>
+										<td><%= link_to("Show", {:action => 'show', :id => obj.id}, :class => 'btn-info btn') %>
+									        <%= link_to("Edit", {:action => 'edit', :shop_id => obj.id}, :class => 'btn-info btn') %>
+									        <%= link_to("Delete", {:action => 'delete', :id => obj.id}, :class => 'btn-danger btn') %>
 									    </td>
 									</tr>
 								<% end %>
