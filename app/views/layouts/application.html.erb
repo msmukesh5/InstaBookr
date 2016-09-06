@@ -6,15 +6,29 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag :defaults %>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
   </head>
 
-  <body>
-  	<% flash.each do |name, msg| %>
-    	<%= content_tag :div, msg, :id => "flash_#{name}" if msg.is_a?(String) %>
-  	<% end %>
-  	<br/>
-    <%= yield %>
+    <% unless current_user %>
+        <body class="<%= (['devise_invitable/registrations', 'sessions', 'invitations', 'users', 'confirmations','devise/passwords', 'devise/unlocks'].include? params[:controller]) ? '' : '' %>">
+        <%= yield %>
+    <% else %>
+         <body class="nav-md">
+            <div class="container body">
+            <% flash.each do |key, value| %>
+                <div align="center" id="flash" class="alert alert-<%= key %>"><%= value %></div>
+            <% end %>
+
+            <%= render "shared/sidenav" %>
+            <%= render "shared/topnav" %>
+
+            <%= yield %>
+
+            <%= render "shared/footer" %>
+            <%= javascript_include_tag 'footermanifest', 'data-turbolinks-track' => true %>
+    <% end %>
+
   </body>
 </html>

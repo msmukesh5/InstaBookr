@@ -8,12 +8,5 @@ Rails.application.config.assets.version = '1.0'
 
 # Precompile additional assets.
 # application.js, application.css, and all non-JS/CSS in app/assets folder are already added.
-Rails.application.config.assets.precompile += %w( bootstrap.min.css )
-Rails.application.config.assets.precompile += %w( style.css )
-Rails.application.config.assets.precompile += %w( Chart.js )
-Rails.application.config.assets.precompile += %w( wow.min.js )
-Rails.application.config.assets.precompile += %w( jquery-1.10.2.min.js )
-Rails.application.config.assets.precompile += %w( jquery.nicescroll.js )
-Rails.application.config.assets.precompile += %w( scripts.js )
-Rails.application.config.assets.precompile += %w( bootstrap.min.js )
+Rails.application.config.assets.precompile += %w( footermanifest.js)
 

@@ -1,8 +1,8 @@
 include ApplicationHelper
 class HomeController < ApplicationController
 
-	# skip_before_filter :authenticate_user!, :only => :index
-	layout 'home_layout'
+	skip_before_filter :authenticate_user!, :only => :test
+	# layout 'home_layout'
 
 	def index
 			
@@ -27,6 +27,13 @@ class HomeController < ApplicationController
 		end
 			
 		
+	end
+
+	def test
+		# flash[:success] = "demo flash success"
+		#other alternatives are
+    	# flash[:warn ] = "Israel don't quite like warnings"
+    	# flash[:danger ] = "Naomi let the dog out!"
 	end
 
 
