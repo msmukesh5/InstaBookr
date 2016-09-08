@@ -36,5 +36,9 @@ class HomeController < ApplicationController
     	# flash[:danger ] = "Naomi let the dog out!"
 	end
 
+	def index_bk_new
+		
+	end
+
 
 end

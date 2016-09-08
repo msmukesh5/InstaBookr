@@ -1,48 +1,201 @@
 <!-- page content -->
 <div class="right_col" role="main">
-    <div class="">
+    <% if @user.is_super_user%>
         <div class="page-title">
             <div class="title_left">
-                <h3>Plain Page</h3>
-            </div>
-
-            <div class="title_right">
-                <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
-                    <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Search for...">
-                        <span class="input-group-btn">
-                            <button class="btn btn-default" type="button">Go!</button>
-                        </span>
-                    </div>
-                </div>
+                <h3>Shops List</h3>
             </div>
         </div>
-        <div class="clearfix"></div>
 
         <div class="row">
 
             <div class="col-md-12 col-sm-12 col-xs-12">
-                <div class="x_panel" style="height:600px;">
+                <div class="x_panel">
                     <div class="x_title">
                         <h2>Plain Page</h2>
-                        <ul class="nav navbar-right panel_toolbox">
-                            <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                                <ul class="dropdown-menu" role="menu">
-                                    <li><a href="#">Settings 1</a></li>
-                                    <li><a href="#">Settings 2</a></li>
-                                </ul>
-                            </li>
-                            <li><a class="close-link"><i class="fa fa-close"></i></a></li>
-                        </ul>
                         <div class="clearfix"></div>
                     </div>
+                    <div class="x_content">
+                    <p class="text-muted font-13 m-b-30">
+                      DataTables has most features enabled by default, so all you need to do to use it with your own tables is to call the construction function: <code>$().DataTable();</code>
+                    </p>
+                    <table id="datatable" class="table table-striped jambo_table bulk_action">
+                        <thead>
+                            <tr class="headings">
+                                <th class="column-title">#</th>
+                                <th class="column-title">Shop</th>
+                                <th class="column-title">User Name</th>
+                                <th class="column-title">Service</th>
+                                <th class="column-title">Contact number</th>
+                                <th class="column-title">Location</th>
+                                <th class="column-title">Status</th>
+                                <th class="column-title">Actions</th>
+                            </tr>
+                        </thead>
+
+
+                        <tbody>
+                            <% @shops.each do |obj| %>
+                                <tr>
+                                    <td><%= obj.id %></td>
+                                    <td><%= obj.name %></td>
+                                    <%usr = User.find(obj.user_id)%>
+                                    <td><%= usr.first_name + usr.last_name %></td>
+                                    <td><%= obj.service_type.name %></td>
+                                    <td><%= usr.contact_number1 %></td>
+                                    <td><%= obj.location.location%></td>
+                                    <td><%= obj.status %></td>
+                                    <td><% if obj.status == "Active" %>
+                                            <%= link_to("Unconfirm", {:controller => 'shops', :action => 'confirm', :shop_id => obj.id, :confirmation => false}, :class => 'btn-danger btn') %>
+                                        <%elsif obj.status == "UNCONFIRMED" %>
+                                            <%= link_to("Confirm", {:controller => 'shops',:action => 'confirm', :shop_id => obj.id, :confirmation => true}, :class => 'btn-success btn') %>
+                                        <%end%>
+                                    </td>
+                                </tr>
+                            <% end %>
+                        </tbody>
+                    </table>
+                  </div>
                 </div>
             </div>
         </div>
-    </div>
+    <% else %>
+        <div class="page-title">
+            <div class="title_left">
+                <h3>User booking list</h3>
+            </div>
+        </div>
+        <div class="row">
+
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2>Plain Page</h2>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+                    <p class="text-muted font-13 m-b-30">
+                      DataTables has most features enabled by default, so all you need to do to use it with your own tables is to call the construction function: <code>$().DataTable();</code>
+                    </p>
+                    <table id="datatable" class="table table-striped jambo_table bulk_action">
+                        <thead>
+                            <tr class="headings">
+                                <th class="column-title">#</th>
+                                <th class="column-title">Name</th>
+                                <th class="column-title">Gender</th>
+                                <th class="column-title">Shop Name</th>
+                                <th class="column-title">Date and Time</th>
+                                <th class="column-title">Status</th>
+                                <th class="column-title">Contact number</th>
+                                <th class="column-title">Actions</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <% @bookings.each do |obj| %>
+                                <tr>
+                                    <td><%= obj.id %></td>
+                                    <%usr = User.find(obj.user_id)%>
+                                    <td><%= usr.first_name + usr.last_name %></td>
+                                    <td><%= usr.gender %></td>
+                                    <td><%= obj.shop.name%></td>
+                                    <td><%= obj.date%></td>
+                                    <td><%= obj.status %></td>
+                                    <td><%= usr.contact_number1%></td>
+                                    <td><button class="btn-success btn">Confirm</button>
+                                                <button class="btn-info btn">Served</button>
+                                    </td>
+                                </tr>
+                            <% end %>
+                        </tbody>
+                    </table>
+                  </div>
+                </div>
+            </div>
+        </div>
+    <% end %>
 </div>
 <!-- /page content -->
 
 <!--Test Page specific JS -->
+<!-- Datatables -->
+    <script> 
+      $(document).ready(function() {
+        var handleDataTableButtons = function() {
+          if ($("#datatable-buttons").length) {
+            $("#datatable-buttons").DataTable({
+              dom: "Bfrtip",
+              buttons: [
+                {
+                  extend: "copy",
+                  className: "btn-sm"
+                },
+                {
+                  extend: "csv",
+                  className: "btn-sm"
+                },
+                {
+                  extend: "excel",
+                  className: "btn-sm"
+                },
+                {
+                  extend: "pdfHtml5",
+                  className: "btn-sm"
+                },
+                {
+                  extend: "print",
+                  className: "btn-sm"
+                },
+              ],
+              responsive: true
+            });
+          }
+        };
+
+        TableManageButtons = function() {
+          "use strict";
+          return {
+            init: function() {
+              handleDataTableButtons();
+            }
+          };
+        }();
+
+        $('#datatable').dataTable();
+
+        $('#datatable-keytable').DataTable({
+          keys: true
+        });
+
+        $('#datatable-responsive').DataTable();
+
+        $('#datatable-scroller').DataTable({
+          ajax: "js/datatables/json/scroller-demo.json",
+          deferRender: true,
+          scrollY: 380,
+          scrollCollapse: true,
+          scroller: true
+        });
+
+        $('#datatable-fixed-header').DataTable({
+          fixedHeader: true
+        });
+
+        var $datatable = $('#datatable-checkbox');
+
+        $datatable.dataTable({
+          'order': [[ 1, 'asc' ]],
+          'columnDefs': [
+            { orderable: false, targets: [0] }
+          ]
+        });
+        $datatable.on('draw.dt', function() {
+          $('input').iCheck({
+            checkboxClass: 'icheckbox_flat-green'
+          });
+        });
+
+        TableManageButtons.init();
+      });
+    </script>
+    <!-- /Datatables -->

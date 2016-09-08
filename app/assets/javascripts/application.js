@@ -15,6 +15,8 @@
 
 //= require jquery_ujs
 //= require turbolinks
+//= require custom.js
+//= require custom.min.js
 
 //= require flot/jquery.flot.js
 //= require flot/jquery.flot.pie.js
@@ -40,6 +42,18 @@
 //= require nprogress.js
 
 //= require flash.js
+//= require fastclick.js
+//= require jquery.dataTables.min.js
+//= require dataTables.bootstrap.min.js
+//= require buttons.html5.min.js
+//= require buttons.bootstrap.min.js
+//= require buttons.flash.min.js
+//= require buttons.print.min.js
+//= require dataTables.fixedHeader.min.js
+//= require dataTables.responsive.min.js
+//= require responsive.bootstrap.js
+//= require dataTables.scroller.min.js
+
 
 
 

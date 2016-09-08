@@ -12,23 +12,26 @@
   </head>
 
     <% unless current_user %>
-        <body class="<%= (['devise_invitable/registrations', 'sessions', 'invitations', 'users', 'confirmations','devise/passwords', 'devise/unlocks'].include? params[:controller]) ? '' : '' %>">
+        <body class="<%= (['devise_invitable/registrations', 'sessions', 'invitations', 'users', 'confirmations','devise/passwords', 'devise/unlocks'].include? params[:controller]) ? 'bg-custom-grey' : '' %>">
         <%= yield %>
+        </body>
     <% else %>
-         <body class="nav-md">
+        <body class="nav-md">
             <div class="container body">
-            <% flash.each do |key, value| %>
-                <div align="center" id="flash" class="alert alert-<%= key %>"><%= value %></div>
-            <% end %>
+                <div class="main_container">
+                    <% flash.each do |key, value| %>
+                        <div align="center" id="flash" class="alert alert-<%= key %>"><%= value %></div>
+                    <% end %>
 
-            <%= render "shared/sidenav" %>
-            <%= render "shared/topnav" %>
+                    <%= render "shared/sidenav" %>
+                    <%= render "shared/topnav" %>
 
-            <%= yield %>
+                    <%= yield %>
 
-            <%= render "shared/footer" %>
-            <%= javascript_include_tag 'footermanifest', 'data-turbolinks-track' => true %>
+                    <%= render "shared/footer" %>
+                    <%= javascript_include_tag 'footermanifest', 'data-turbolinks-track' => true %>
+                </div>
+            </div>
+        </body>
     <% end %>
-
-  </body>
 </html>
