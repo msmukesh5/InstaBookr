@@ -53,6 +53,7 @@
 //= require dataTables.responsive.min.js
 //= require responsive.bootstrap.js
 //= require dataTables.scroller.min.js
+//= require jquery.tagsinput.js
 
 
 

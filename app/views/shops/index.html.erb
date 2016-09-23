@@ -1,51 +1,57 @@
-<% @page_title = "Shops" %>
-<div id="page-wrapper">
-	<div class="graphs">
-		<h3 class="blank1">Shops</h3>
-		<div class="xs tabls">
-			
-			<div class="panel panel-warning" data-widget="{&quot;draggable&quot;: &quot;false&quot;}" data-widget-static="">
-				<div class="panel-heading">
-					<h2>My Shops List</h2>
-					<div class="panel-ctrls" data-actions-container="" data-action-collapse="{&quot;target&quot;: &quot;.panel-body&quot;}"><span class="button-icon has-bg"><i class="ti ti-angle-down"></i></span></div>
-				</div>
+<!-- page content -->
+<div class="right_col" role="main">
+    <div class="">
+        <div class="row">
 
-				<div class="panel-body no-padding" style="display: block;">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel" style="height:600px;">
+                    <div class="x_content">
 
-					<%= link_to("Add New Shop", {:action => 'new'}, :class => "btn-success btn") %> <br/> <br/>
-					<table class="table table-striped">
-						<thead>
-							<tr class="warning">
-								<th>#</th>
-								<th>Name</th>
-								<th>Location</th>
-								<th>Owner</th>
-								<th>Status</th>
-								<th>Actions</th>
-							</tr>
-						</thead>
-						<tbody>
-							<% serial_no = 0%>
-							<% @shops.each do |obj| %>
-								<% if obj.status != 'DEACTIVE'%>
-									<tr>
-										<td><%= serial_no+=1 %></td>
-										<td><%= obj.name %></td>
-										<% location = Location.find(obj.location_id)%>
-										<td><%= location.location%></td>
-										<td><%= current_user.email %></td>
-										<td><%= obj.status %></td>
-										<td><%= link_to("Show", {:action => 'show', :id => obj.id}, :class => 'btn-info btn') %>
-									        <%= link_to("Edit", {:action => 'edit', :shop_id => obj.id}, :class => 'btn-info btn') %>
-									        <%= link_to("Delete", {:action => 'delete', :id => obj.id}, :class => 'btn-danger btn') %>
-									    </td>
-									</tr>
-								<% end %>
-							<% end %>
-						</tbody>
-					</table>
-				</div>
-			</div>
-		</div>
-	</div>
+                    	<div class="panel panel-warning" data-widget="{&quot;draggable&quot;: &quot;false&quot;}" data-widget-static="">
+							<div class="panel-heading">
+								<h2>My Shops List</h2>
+								<div class="panel-ctrls" data-actions-container="" data-action-collapse="{&quot;target&quot;: &quot;.panel-body&quot;}"><span class="button-icon has-bg"><i class="ti ti-angle-down"></i></span></div>
+							</div>
+
+							<div class="panel-body no-padding" style="display: block;">
+
+								<%= link_to(" (+) Add Services to shop", {:action => 'services', :shop_id =>@shops.first.id }, :class => "btn-success btn") %> <br/>
+								<table class="table table-striped">
+									<thead>
+										<tr class="warning">
+											<th>#</th>
+											<th>Name</th>
+											<th>Location</th>
+											<th>Owner</th>
+											<th>Status</th>
+											<th>Actions</th>
+										</tr>
+									</thead>
+									<tbody>
+										<% serial_no = 0%>
+										<% @shops.each do |obj| %>
+											<% if obj.status != 'DEACTIVE'%>
+												<tr>
+													<td><%= serial_no+=1 %></td>
+													<td><%= obj.name %></td>
+													<% location = Location.find(obj.location_id)%>
+													<td><%= location.location%></td>
+													<td><%= current_user.email %></td>
+													<td><%= obj.status %></td>
+													<td><%= link_to("Show", {:action => 'show', :id => obj.id}, :class => 'btn-info btn') %>
+												        <%= link_to("Edit", {:action => 'edit', :shop_id => obj.id}, :class => 'btn-primary btn') %>
+												        <%= link_to("Delete", {:action => 'delete', :id => obj.id}, :class => 'btn-danger btn') %>
+												    </td>
+												</tr>
+											<% end %>
+										<% end %>
+									</tbody>
+								</table>
+							</div>
+						</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

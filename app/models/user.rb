@@ -10,7 +10,20 @@ class User < ApplicationRecord
     has_many :carts
     has_many :shops
 
-    
+    def fullname
+    	full_name = ""
+    	if self.first_name && self.last_name
+    		full_name = self.first_name + self.last_name
+    	elsif self.first_name && !self.last_name
+    		full_name = self.first_name
+    	elsif !self.first_name && self.last_name
+    		full_name = self.last_name
+    	else
+    		full_name = "Guest User"
+    	end
+    	
+    	full_name
+    end
     
 
 end

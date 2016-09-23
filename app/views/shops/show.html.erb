@@ -1,6 +1,6 @@
 <% @page_title = "Shop" %>
 
-<div id="page-wrapper">
+<!-- <div id="page-wrapper">
 	<div class="graphs">
 		<div class="xs tabls">
 			<div class="panel panel-warning" data-widget="{&quot;draggable&quot;: &quot;false&quot;}" data-widget-static="">
@@ -102,4 +102,126 @@
 		</div>
 
 	</div>
+</div> -->
+
+<div class="right_col" role="main">
+    <div class="">
+        <div class="row">
+
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2> Shop <%=@shop.id %> </h2>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+                    	<div class="col-md-12 col-sm-12 col-xs-12">
+                    		<%= link_to("<< shop list", {:action => 'index'}, :class => "btn-danger btn") %>&nbsp; &nbsp; &nbsp; &nbsp;
+                    		<%= link_to("Edit shop", {:action => 'edit', :user_id => current_user.id, :shop_id => @shop.id}, :class => "btn-primary btn") %> 
+							 <br/> <br/>
+                    	</div>
+
+                    	<div class="col-md-2 col-sm-3 col-xs-12" style="background:#1da7e0; color:#000000">
+                    		<h2>Shop Name  </h2>
+                    	</div>
+                    	<div class="col-md-10 col-sm-9 col-xs-12" style="background:#1da7e0; color:#000000">
+							<h2> : <%= @shop.name %></h2>
+                    	</div>
+                    	
+                    	<div class="col-md-2 col-sm-3 col-xs-12" style="color:#000000">
+                    		<h2>Icon </h2>
+                    	</div>
+                    	<div class="col-md-10 col-sm-9 col-xs-12" style="color:#000000">
+							<h2> : <%= @shop.icon %></h2>
+                    	</div>
+
+                    	<div class="col-md-2 col-sm-3 col-xs-12" style="background:#1da7e0; color:#000000">
+                    		<h2> Banner </h2>
+                    	</div>
+                    	<div class="col-md-10 col-sm-9 col-xs-12" style="background:#1da7e0; color:#000000">
+							<h2> : <%= @shop.banner %></h2>
+                    	</div>
+
+                    	<div class="col-md-2 col-sm-3 col-xs-12" style="color:#000000">
+                    		<h2>Service Type</h2>
+                    	</div>
+                    	<div class="col-md-10 col-sm-9 col-xs-12" style="color:#000000">
+							<h2> : <%= ServiceType.find(@shop.service_type_id).name %></h2>
+                    	</div>
+
+                    	<div class="col-md-3 col-sm-3 col-xs-12" style="background:#1da7e0; color:#000000">
+                    		<h2>Contact Number 1</h2>
+                    	</div>
+                    	<div class="col-md-9 col-sm-9 col-xs-12" style="background:#1da7e0; color:#000000">
+							<h2> : <%= @shop.contact_number1 %></h2>
+                    	</div>
+
+                    	<div class="col-md-3 col-sm-3 col-xs-12" style="color:#000000">
+                    		<h2>Contact Number 2</h2>
+                    	</div>
+                    	<div class="col-md-9 col-sm-9 col-xs-12" style="color:#000000">
+							<h2> : <%= @shop.contact_number2 %></h2>
+                    	</div>
+
+                    	<div class="col-md-2 col-sm-3 col-xs-12" style="background:#1da7e0; color:#000000">
+                    		<h2> Status </h2>
+                    	</div>
+                    	<div class="col-md-10 col-sm-9 col-xs-12" style="background:#1da7e0; color:#000000">
+							<h2> : <%= @shop.status %></h2>
+                    	</div>
+
+                    	<div class="col-md-2 col-sm-3 col-xs-12" style="color:#000000">
+                    		<h2> Location </h2>
+                    	</div>
+                    	<div class="col-md-10 col-sm-9 col-xs-12" style="color:#000000">
+							<h2> : <%= Location.find(@shop.location_id).location %></h2>
+                    	</div>
+
+                    	<div class="col-md-2 col-sm-3 col-xs-12" style="background:#1da7e0; color:#000000">
+                    		<h2> Latitude </h2>
+                    	</div>
+                    	<div class="col-md-10 col-sm-9 col-xs-12" style="background:#1da7e0; color:#000000">
+							<h2> : <%= @shop.latitude %></h2>
+                    	</div>
+
+                    	<div class="col-md-2 col-sm-3 col-xs-12" style="color:#000000">
+                    		<h2> Longitude </h2>
+                    	</div>
+                    	<div class="col-md-10 col-sm-9 col-xs-12" style="color:#000000">
+							<h2> : <%= @shop.longitude %></h2>
+                    	</div>
+
+                    	<div class="col-md-2 col-sm-3 col-xs-12" style="background:#1da7e0; color:#000000">
+                    		<h2> Booking Count </h2>
+                    	</div>
+                    	<div class="col-md-10 col-sm-9 col-xs-12" style="background:#1da7e0; color:#000000">
+							<h2> : <%= @shop.booking_count %></h2>
+                    	</div>
+
+                    	<div class="col-md-2 col-sm-3 col-xs-12" style="color:#000000">
+                    		<h2> Caption </h2>
+                    	</div>
+                    	<div class="col-md-10 col-sm-9 col-xs-12" style="color:#000000">
+							<h2> : <%= @shop.caption %></h2>
+                    	</div>
+
+                    	<div class="col-md-2 col-sm-3 col-xs-12" style="background:#1da7e0; color:#000000">
+                    		<h2> Details </h2>
+                    	</div>
+                    	<div class="col-md-10 col-sm-9 col-xs-12" style="background:#1da7e0; color:#000000">
+							<h2> : <%= @shop.details %></h2>
+                    	</div>
+
+                    	<div class="col-md-2 col-sm-3 col-xs-12" style="color:#000000">
+                    		<h2> Address </h2>
+                    	</div>
+                    	<div class="col-md-10 col-sm-9 col-xs-12" style="color:#000000">
+							<h2> : <%= @shop.address %></h2>
+                    	</div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

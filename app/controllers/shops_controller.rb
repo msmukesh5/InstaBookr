@@ -3,17 +3,13 @@ class ShopsController < ApplicationController
 	def index
 
 		if !current_user.shops.empty?
-			@shops = current_user.shops
+			@shops = current_user.shops.where(:status => 'Active')
 		end
 	end
 
 	def edit
 		@shop = Shop.find(params[:shop_id])
 		@user = User.find(current_user.id)
-	end
-
-	def show
-		@shop = Shop.find(params[:id])
 	end
 
 	def update
@@ -31,6 +27,23 @@ class ShopsController < ApplicationController
 		puts @user.inspect
 
 		@shop = Shop.new
+	end
+
+	def create
+    	@shop = Shop.new(new_shop_params)
+    	@shop.uuid = gen_uuid
+    	@shop.user_id = current_user.id
+    	if @shop.save
+       		flash[:notice] = "Shop successfully created"
+       		redirect_to(:controller => 'home',:action => 'index')
+    	else
+       		flash[:notice] = "Shop creation unsuccessful"
+       		render('new')
+    	end
+  	end
+
+  	def show
+		@shop = Shop.find(params[:id])
 	end
 
 	def confirm
@@ -61,19 +74,6 @@ class ShopsController < ApplicationController
 		redirect_to(:controller => 'home', :action => 'index')
 	end
 
-	def create
-    	@shop = Shop.new(new_shop_params)
-    	@shop.uuid = gen_uuid
-    	@shop.user_id = current_user.id
-    	if @shop.save
-       		flash[:notice] = "Shop successfully created"
-       		redirect_to(:action => 'index')
-    	else
-       		flash[:notice] = "Shop creation unsuccessful"
-       		render('new')
-    	end
-  	end
-
   	def delete
     	@shop = Shop.find(params[:id])
   	end
@@ -83,7 +83,25 @@ class ShopsController < ApplicationController
     	shop.status = "DEACTIVE"
     	shop.save
     	flash[:notice] = "shop #{shop.name} destroyed successfully"
-    	redirect_to(:action => 'index')
+    	redirect_to(:controller => 'home',:action => 'index')
+  	end
+
+  	def services
+  		@shop = Shop.find(params[:shop_id])
+  		@services = Service.where(:shop_id => params[:shop_id])
+  		puts @services.inspect
+  	end
+
+  	def edit_offer
+  		@service = Service.find(params[:id])
+  	end
+
+  	def delete_service
+  		
+  	end
+
+  	def edit_service
+  		
   	end
 
 

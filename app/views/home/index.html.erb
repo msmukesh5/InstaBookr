@@ -12,13 +12,11 @@
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                     <div class="x_title">
-                        <h2>Plain Page</h2>
+                        <h2>Shops</h2>
                         <div class="clearfix"></div>
                     </div>
                     <div class="x_content">
-                    <p class="text-muted font-13 m-b-30">
-                      DataTables has most features enabled by default, so all you need to do to use it with your own tables is to call the construction function: <code>$().DataTable();</code>
-                    </p>
+                   
                     <table id="datatable" class="table table-striped jambo_table bulk_action">
                         <thead>
                             <tr class="headings">
@@ -60,59 +58,62 @@
             </div>
         </div>
     <% else %>
-        <div class="page-title">
-            <div class="title_left">
-                <h3>User booking list</h3>
-            </div>
-        </div>
-        <div class="row">
-
-            <div class="col-md-12 col-sm-12 col-xs-12">
-                <div class="x_panel">
-                    <div class="x_title">
-                        <h2>Plain Page</h2>
-                        <div class="clearfix"></div>
-                    </div>
-                    <div class="x_content">
-                    <p class="text-muted font-13 m-b-30">
-                      DataTables has most features enabled by default, so all you need to do to use it with your own tables is to call the construction function: <code>$().DataTable();</code>
-                    </p>
-                    <table id="datatable" class="table table-striped jambo_table bulk_action">
-                        <thead>
-                            <tr class="headings">
-                                <th class="column-title">#</th>
-                                <th class="column-title">Name</th>
-                                <th class="column-title">Gender</th>
-                                <th class="column-title">Shop Name</th>
-                                <th class="column-title">Date and Time</th>
-                                <th class="column-title">Status</th>
-                                <th class="column-title">Contact number</th>
-                                <th class="column-title">Actions</th>
-                            </tr>
-                        </thead>
-
-                        <tbody>
-                            <% @bookings.each do |obj| %>
-                                <tr>
-                                    <td><%= obj.id %></td>
-                                    <%usr = User.find(obj.user_id)%>
-                                    <td><%= usr.first_name + usr.last_name %></td>
-                                    <td><%= usr.gender %></td>
-                                    <td><%= obj.shop.name%></td>
-                                    <td><%= obj.date%></td>
-                                    <td><%= obj.status %></td>
-                                    <td><%= usr.contact_number1%></td>
-                                    <td><button class="btn-success btn">Confirm</button>
-                                                <button class="btn-info btn">Served</button>
-                                    </td>
-                                </tr>
-                            <% end %>
-                        </tbody>
-                    </table>
-                  </div>
+        <% if !@user.shops.empty? and @shops.status == "Active" %>
+            <div class="page-title">
+                <div class="title_left">
+                    <h3>User booking list</h3>
                 </div>
             </div>
-        </div>
+            <div class="row">
+
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="x_panel">
+                        <div class="x_title">
+                            <h2>Bookings</h2>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="x_content">
+                        
+                        <table id="datatable" class="table table-striped jambo_table bulk_action">
+                            <thead>
+                                <tr class="headings">
+                                    <th class="column-title">#</th>
+                                    <th class="column-title">Name</th>
+                                    <th class="column-title">Gender</th>
+                                    <th class="column-title">Shop Name</th>
+                                    <th class="column-title">Date and Time</th>
+                                    <th class="column-title">Status</th>
+                                    <th class="column-title">Contact number</th>
+                                    <th class="column-title">Actions</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                <% @bookings.each do |obj| %>
+                                    <tr>
+                                        <td><%= obj.id %></td>
+                                        <%usr = User.find(obj.user_id)%>
+                                        <td><%= usr.first_name + usr.last_name %></td>
+                                        <td><%= usr.gender %></td>
+                                        <td><%= obj.shop.name%></td>
+                                        <td><%= obj.date%></td>
+                                        <td><%= obj.status %></td>
+                                        <td><%= usr.contact_number1%></td>
+                                        <td><button class="btn-success btn">Confirm</button>
+                                                    <button class="btn-info btn">Served</button>
+                                        </td>
+                                    </tr>
+                                <% end %>
+                            </tbody>
+                        </table>
+                      </div>
+                    </div>
+                </div>
+            </div>
+        <% else %>
+            <!-- user has no shops so there would be link to create a shop initially -->
+            <%= render '/home/shop_creation_link' %>
+        <% end %>
     <% end %>
 </div>
 <!-- /page content -->

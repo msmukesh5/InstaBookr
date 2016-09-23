@@ -1,105 +1,142 @@
-<% if @shop.errors.any? %>
-	<h4> There are errors in the form </h4>
-	<ul>
-	  <% @shop.errors.full_messages.each do |msg| %>
-	    <li><%= msg %></li>
-	  <% end %>
-	</ul>
-<% end %>
+<form class="form-horizontal form-label-left">
+	<div class="form-group">
+		<label class="control-label col-md-2 col-sm-2 col-xs-12">Shop name</label>
+		<div class="col-md-10 col-sm-10 col-xs-12">
+			<%= f.text_field(:name, :class => "form-control")%>
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="control-label col-md-2 col-sm-2 col-xs-12">Owner User ID</label>
+		<div class="col-md-10 col-sm-10 col-xs-12">
+			<input class="form-control" disabled="disabled" placeholder=<%= @user.id%> type="text"></input>
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="control-label col-md-2 col-sm-2 col-xs-12">Icon</label>
+		<div class="col-md-10 col-sm-10 col-xs-12">
+			<%= f.text_field(:icon, :class => "form-control")%>
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="control-label col-md-2 col-sm-2 col-xs-12">Banner</label>
+		<div class="col-md-10 col-sm-10 col-xs-12">
+			<%= f.text_field(:banner, :class => "form-control")%>
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="control-label col-md-2 col-sm-2 col-xs-12">Service type IDs</label>
+		<div class="col-sm-10 col-xs-12">
+			<%= f.collection_select :service_type_id, ServiceType.order(:name),:id,:name, include_blank: true %>
+		</div>
+	</div>
 
-<div class="panel-body panel-body-inputin">
-	<div class="form-horizontal">
-		<div class="form-group">
-			<label for="focusedinput" class="col-sm-2 control-label">Shop name</label>
-			<div class="col-sm-10">
-				<%= f.text_field(:name, :class => "form-control1")%>
-			</div>
-		</div>
-		<div class="form-group">
-			<label for="focusedinput" class="col-sm-2 control-label">Owner User ID</label>
-			<label for="focusedinput" class="col-sm-1 control-label"><%= @user.id%></label>
-		</div>
-		<div class="form-group">
-			<label for="focusedinput" class="col-sm-2 control-label">Icon</label>
-			<div class="col-sm-10">
-				<%= f.text_field(:icon, :class => "form-control1")%>
-			</div>
-		</div>
-		<div class="form-group">
-			<label for="focusedinput" class="col-sm-2 control-label">Banner</label>
-			<div class="col-sm-10">
-				<%= f.text_field(:banner, :class => "form-control1")%>
-			</div>
-		</div>
-		<div class="form-group">
-			<label for="focusedinput" class="col-sm-2 control-label">Service type IDs</label>
-			<div class="col-sm-10">
-				<%= f.collection_select :service_type_id, ServiceType.order(:name),:id,:name, include_blank: true %>
-			</div>
-		</div>
-		<div class="form-group">
-			<label for="focusedinput" class="col-sm-2 control-label">Time slot IDs</label>
-			<div class="col-sm-10">
-				<%= f.text_field(:time_slot_ids, :class => "form-control1")%>
-			</div>
-		</div>
-		<div class="form-group">
-			<label for="focusedinput" class="col-sm-2 control-label">Day slot IDs</label>
-			<div class="col-sm-10">
-				<%= f.text_field(:day_slot_ids, :class => "form-control1")%>
-			</div>
-		</div>
-		
+	<div class="form-group">
+		<label class="control-label col-md-2 col-sm-2 col-xs-12">Time slots</label>
+		<div class="col-sm-10 col-xs-12">
+			<label class="control-label col-md-2 col-sm-3 col-xs-12">1 :: <small>12 am - 1 am</small></label>
+			<label class="control-label col-md-2 col-sm-3 col-xs-12">2 :: <small>1 am - 2 am</small></label>
+			<label class="control-label col-md-2 col-sm-3 col-xs-12">3 :: <small>2 am - 3 am</small></label>
+			<label class="control-label col-md-2 col-sm-3 col-xs-12">4 :: <small>3 am - 4 am</small></label>
+			<label class="control-label col-md-2 col-sm-3 col-xs-12">5 :: <small>4 am - 5 am</small></label>
+			<label class="control-label col-md-2 col-sm-3 col-xs-12">6 :: <small>5 am - 6 am</small></label>
 
+			<label class="control-label col-md-2 col-sm-3 col-xs-12">7 :: <small>6 am - 7 am</small></label>
+			<label class="control-label col-md-2 col-sm-3 col-xs-12">8 :: <small>7 am - 8 am</small></label>
+			<label class="control-label col-md-2 col-sm-3 col-xs-12">9 :: <small>8 am - 9 am</small></label>
+			<label class="control-label col-md-2 col-sm-3 col-xs-12">10 :: <small>9 am - 10 am</small></label>
+			<label class="control-label col-md-2 col-sm-3 col-xs-12">11 :: <small>10 am - 11 am</small></label>
+			<label class="control-label col-md-2 col-sm-3 col-xs-12">12 :: <small>11 am - 12 pm</small></label>
 
-		<div class="form-group">
-			<label for="focusedinput" class="col-sm-2 control-label">Contact Number 1</label>
-			<div class="col-sm-10">
-				<%= f.text_field(:contact_number1, :class => "form-control1")%>
-			</div>
+			<label class="control-label col-md-2 col-sm-3 col-xs-12">13 :: <small>12 pm - 1 pm</small></label>
+			<label class="control-label col-md-2 col-sm-3 col-xs-12">14 :: <small>1 pm - 2 pm</small></label>
+			<label class="control-label col-md-2 col-sm-3 col-xs-12">15 :: <small>2 pm - 3 pm</small></label>
+			<label class="control-label col-md-2 col-sm-3 col-xs-12">16 :: <small>3 pm - 4 pm</small></label>
+			<label class="control-label col-md-2 col-sm-3 col-xs-12">17 :: <small>4 pm - 5 pm</small></label>
+			<label class="control-label col-md-2 col-sm-3 col-xs-12">18 :: <small>5 pm - 6 pm</small></label>
+
+			<label class="control-label col-md-2 col-sm-3 col-xs-12">19 :: <small>6 pm - 7 pm</small></label>
+			<label class="control-label col-md-2 col-sm-3 col-xs-12">20 :: <small>7 pm - 8 pm</small></label>
+			<label class="control-label col-md-2 col-sm-3 col-xs-12">21 :: <small>8 pm - 9 pm</small></label>
+			<label class="control-label col-md-2 col-sm-3 col-xs-12">22 :: <small>9 pm - 10pm</small></label>
+			<label class="control-label col-md-2 col-sm-3 col-xs-12">23 :: <small>10 pm - 11 pm</small></label>
+			<label class="control-label col-md-2 col-sm-3 col-xs-12">24 :: <small>11 pm - 12 am</small></label>
 		</div>
-		<div class="form-group">
-			<label for="focusedinput" class="col-sm-2 control-label">Contact Number 2</label>
-			<div class="col-sm-10">
-				<%= f.text_field(:contact_number2, :class => "form-control1")%>	
-			</div>
+	</div>
+
+	<div class="form-group">
+		<label class="control-label col-md-2 col-sm-2 col-xs-12">Time slot IDs</label>
+		<div class="col-sm-10 col-xs-12">
+			<%= f.text_field(:time_slot_ids, :class => "form-control")%>
 		</div>
-		<div class="form-group">
-			<label for="focusedinput" class="col-sm-2 control-label">location Id</label>
-			<div class="col-sm-10">
-				<%= f.collection_select :location_id, Location.order(:location),:id,:location, include_blank: true %>
-			</div>
-		</div>
-		<div class="form-group">
-			<label for="focusedinput" class="col-sm-2 control-label">Latitude</label>
-			<div class="col-sm-10">
-				<%= f.text_field(:latitude, :class => "form-control1")%>	
-			</div>
-		</div>
-		<div class="form-group">
-			<label for="focusedinput" class="col-sm-2 control-label">Longitude</label>
-			<div class="col-sm-10">
-				<%= f.text_field(:longitude, :class => "form-control1")%>	
-			</div>
-		</div>
-		<div class="form-group">
-			<label for="focusedinput" class="col-sm-2 control-label">Caption</label>
-			<div class="col-sm-10">
-				<%= f.text_area(:caption, :class => "form-control1", :rows => 2, :cols => 50)%>
-			</div>
-		</div>
-		<div class="form-group">
-			<label for="focusedinput" class="col-sm-2 control-label">Details</label>
-			<div class="col-sm-10">
-				<%= f.text_area(:details, :class => "form-control1", :rows => 4, :cols => 50)%>
-			</div>
-		</div>
-		<div class="form-group">
-			<label for="focusedinput" class="col-sm-2 control-label">Address</label>
-			<div class="col-sm-10">
-				<%= f.text_area(:address, :class => "form-control1", :rows => 3, :cols => 50)%>
-			</div>
+	</div>
+
+	<div class="form-group">
+		<label class="control-label col-md-2 col-sm-2 col-xs-12">Day slots</label>
+		<div class="col-sm-10 col-xs-12">
+			<label class="control-label col-md-3 col-sm-3 col-xs-12">1 :: <small>Monday</small></label>
+			<label class="control-label col-md-3 col-sm-3 col-xs-12">2 :: <small>Tuesday</small></label>
+			<label class="control-label col-md-3 col-sm-3 col-xs-12">3 :: <small>Wednesday</small></label>
+			<label class="control-label col-md-3 col-sm-3 col-xs-12">4 :: <small>Thursday</small></label>
+			<label class="control-label col-md-3 col-sm-3 col-xs-12">5 :: <small>Friday</small></label>
+			<label class="control-label col-md-3 col-sm-3 col-xs-12">6 :: <small>Saturday</small></label>
+			<label class="control-label col-md-3 col-sm-3 col-xs-12">7 :: <small>Sunday</small></label>
 		</div>
 
 	</div>
-</div>
+
+	<div class="form-group">
+		<label class="control-label col-md-2 col-sm-2 col-xs-12">Day slot IDs</label>
+		<div class="col-sm-10 col-xs-12">
+			<%= f.text_field(:day_slot_ids, :class => "form-control")%>
+		</div>
+	</div>
+
+	<div class="form-group">
+		<label class="control-label col-md-2 col-sm-2 col-xs-12">Contact Number 1</label>
+		<div class="col-sm-10 col-xs-12">
+			<%= f.text_field(:contact_number1, :class => "form-control")%>
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="control-label col-md-2 col-sm-2 col-xs-12">Contact Number 2</label>
+		<div class="col-sm-10 col-xs-12">
+			<%= f.text_field(:contact_number2, :class => "form-control")%>	
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="control-label col-md-2 col-sm-2 col-xs-12">location Id</label>
+		<div class="col-sm-10 col-xs-12">
+			<%= f.collection_select :location_id, Location.order(:location),:id,:location, include_blank: true %>
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="control-label col-md-2 col-sm-2 col-xs-12">Latitude</label>
+		<div class="col-sm-10 col-xs-12">
+			<%= f.text_field(:latitude, :class => "form-control")%>	
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="control-label col-md-2 col-sm-2 col-xs-12">Longitude</label>
+		<div class="col-sm-10 col-xs-12">
+			<%= f.text_field(:longitude, :class => "form-control")%>	
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="control-label col-md-2 col-sm-2 col-xs-12">Caption</label>
+		<div class="col-sm-10 col-xs-12">
+			<%= f.text_area(:caption, :class => "form-control", :rows => 2, :cols => 50)%>
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="control-label col-md-2 col-sm-2 col-xs-12">Details</label>
+		<div class="col-sm-10 col-xs-12">
+			<%= f.text_area(:details, :class => "form-control", :rows => 4, :cols => 50)%>
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="control-label col-md-2 col-sm-2 col-xs-12">Address</label>
+		<div class="col-sm-10 col-xs-12">
+			<%= f.text_area(:address, :class => "form-control", :rows => 3, :cols => 50)%>
+		</div>
+	</div>
+</form>

@@ -1,32 +1,43 @@
-<div id="page-wrapper">
-	<div class="graphs">
-		<div class="xs tabls">
-			<div class="panel panel-info" data-widget="{&quot;draggable&quot;: &quot;false&quot;}" data-widget-static="">
-				<div class="panel-heading">
-					<% if @confirmation == "true" %>
-						<h2> Confirm Shop </h2>
-					<% else %>
-						<h2> Unconfirm Shop </h2>
-					<% end %>
-					<div class="panel-ctrls" data-actions-container="" data-action-collapse="{&quot;target&quot;: &quot;.panel-body&quot;}"><span class="button-icon has-bg"><i class="ti ti-angle-down"></i></span></div>
-				</div>
-				<%= form_for(:shop, :url => {:action => 'toggle_confirmation', :shop_id => @shop.id, :confirmation => @confirmation}) do |f| %>
+<div class="right_col" role="main">
+    <div class="">
+        <div class="row">
 
-					<% if @confirmation == "true" %>
-						<p>Are you sure you want to confirm the shop ?</p>
-					<% else %>
-						<p>Are you sure you want to Unconfirm the shop ?</p>
-					<% end %>
-					<br/>
-				    <p> <div class="info"><%= @shop.name %></p>
-				    <br/>
-				    <% if @confirmation == "true" %>
-				    	<%= submit_tag("Confirm", :class => "btn-success btn") %>
-					<% else %>
-				    	<%= submit_tag("Unconfirm", :class => "btn-danger btn") %>
-					<% end %>
-				<% end %>
-			</div>
-		</div>
-	</div>
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel" style="height:600px;">
+                    <div class="x_title">
+                        <% if @confirmation == "true" %>
+							<h2> Confirm Shop </h2>
+						<% else %>
+							<h2> Unconfirm Shop </h2>
+						<% end %>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+
+                    	<%= form_for(:shop, :url => {:action => 'toggle_confirmation', :shop_id => @shop.id, :confirmation => @confirmation}) do |f| %>
+
+							<% if @confirmation == "true" %>
+								<h4>Are you sure you want to confirm the shop ?</h4>
+							<% else %>
+								<h4>Are you sure you want to Unconfirm the shop ?</h4>
+							<% end %>
+							<br/>
+						    <h2 style="text-decoration: bold;"><%= @shop.name %></h2>
+						    <br/>
+						    <%= link_to("Cancel", {:controller => 'home', :action => 'index'}, :class => 'btn-warning btn') %>
+						    <% if @confirmation == "true" %>
+						    	<%= submit_tag("Confirm", :class => "btn-success btn") %>
+							<% else %>
+						    	<%= submit_tag("Unconfirm", :class => "btn-danger btn") %>
+							<% end %>
+						<% end %>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+<!-- /page content -->
+
+<!--Test Page specific JS -->
