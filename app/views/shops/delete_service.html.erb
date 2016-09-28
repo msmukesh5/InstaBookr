@@ -1,0 +1,28 @@
+<div class="right_col" role="main">
+    <div class="">
+        <div class="row">
+
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel" style="height:600px;">
+                    <div class="x_title">
+                        <h3> Delete Service </h3>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+
+                    	<%= form_for(:service, :url => {:action => 'destroy_service', :service_id => @service.id, :shop_id => @shop.id}) do |f| %>
+
+							<h2>Are you sure you want to permanently delete this service ?</h2><br>
+
+						    <h2>'<%= @service.name %>'</h2>
+
+                            <h2>from '<%= @shop.name %>'</h2><br>
+
+						    <%= submit_tag("Delete", :class => "btn-danger btn") %>
+						<% end %>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

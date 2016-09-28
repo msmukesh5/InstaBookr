@@ -1,4 +1,3 @@
-
 module ApplicationHelper
 
 	def user_init_config(user_id)

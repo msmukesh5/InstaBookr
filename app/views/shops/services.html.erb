@@ -34,10 +34,11 @@
                         <thead>
                             <tr class="headings">
                                 <th class="column-title">Service</th>
-                                <th class="column-title">Cost</th>
-                                <th class="column-title">Discount</th>
-                                <th class="column-title">Discount Start date</th>
-                                <th class="column-title">Discount End date</th>
+                                <th class="column-title">Day Cost</th>
+                                <th class="column-title">Month Cost</th>
+                                <th class="column-title">3 months Cost</th>
+                                <th class="column-title">6 months cost</th>
+                                <th class="column-title">1 Year cost</th>
                                 <th class="column-title">Actions</th>
                             </tr>
                         </thead>
@@ -47,10 +48,11 @@
                             <% @services.each do |obj| %>
                                 <tr>
                                     <td><%= obj.name %></td>
-                                    <td><%= obj.cost %></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
+                                    <td><%= obj.cost_daily %></td>
+                                    <td><%= obj.cost_monthly %></td>
+                                    <td><%= obj.cost_quartly %></td>
+                                    <td><%= obj.cost_halfyearly %></td>
+                                    <td><%= obj.cost_yearly %></td>
                                     <td>
                                         <!-- if offer exist -->
                                         <% if obj.offers.present? %>
@@ -58,14 +60,15 @@
                                         <% else %>
                                             <%= link_to("Add Offer", {:action => 'add_offer', :service_id => obj.id}, :class => 'btn-success btn') %>
                                         <% end %>
-                                        <%= link_to("Delete Service", {:action => 'delete_service', :id => obj.id}, :class     => 'btn-danger btn') %>
-                                        </td>
+                                         <%= link_to("Edit", {:action => 'edit_service', :service_id => obj.id, :shop_id => @shop.id}, :class     => 'btn-primary btn') %>
+                                        <%= link_to("Delete", {:action => 'delete_service', :service_id => obj.id, :shop_id => @shop.id}, :class => 'btn-danger btn') %>                                                                               
+                                    </td>
                                 </tr>
                             <% end %>
                         </tbody>
                     </table>
 
-                    <%= link_to("Add service", {:action => 'add_service', :id => @shop.id}, :class => 'btn-success btn') %>
+                    <%= link_to("Add service", {:action => 'add_service', :shop_id => @shop.id}, :class => 'btn-success btn') %>
 
                     </div>
                 </div>

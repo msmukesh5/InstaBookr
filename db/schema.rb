@@ -112,13 +112,17 @@ ActiveRecord::Schema.define(version: 20160829042928) do
   end
 
   create_table "services", force: :cascade do |t|
-    t.string   "uuid",       limit: 20,                    null: false
-    t.string   "shop_id",                                  null: false
+    t.string   "uuid",            limit: 20,                    null: false
+    t.string   "shop_id",                                       null: false
     t.string   "name"
-    t.integer  "cost",                                     null: false
-    t.string   "status",                default: "Active"
-    t.datetime "created_at",                               null: false
-    t.datetime "updated_at",                               null: false
+    t.integer  "cost_daily",                 default: 0,        null: false
+    t.integer  "cost_monthly",               default: 0
+    t.integer  "cost_quartly",               default: 0
+    t.integer  "cost_halfyearly",            default: 0
+    t.integer  "cost_yearly",                default: 0
+    t.string   "status",                     default: "Active"
+    t.datetime "created_at",                                    null: false
+    t.datetime "updated_at",                                    null: false
     t.index ["shop_id"], name: "index_services_on_shop_id", using: :btree
   end
 
