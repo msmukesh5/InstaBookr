@@ -90,18 +90,21 @@ ActiveRecord::Schema.define(version: 20160829042928) do
 
   create_table "offers", force: :cascade do |t|
     t.string   "offer_name"
-    t.integer  "service_id",         default: 0
-    t.integer  "shop_id",            default: 0
-    t.datetime "start_date_time"
-    t.datetime "end_date_time"
-    t.boolean  "is_day_offer"
-    t.boolean  "is_time_slot_offer"
-    t.string   "time_slot",          default: "[]"
-    t.string   "day_slot",           default: "[]"
-    t.integer  "discount",           default: 0
-    t.string   "status",             default: "Active"
-    t.datetime "created_at",                            null: false
-    t.datetime "updated_at",                            null: false
+    t.string   "uuid"
+    t.string   "code"
+    t.integer  "service_id",      default: 0
+    t.integer  "shop_id",         default: 0
+    t.datetime "start_date_time", default: '2016-10-02 17:53:40'
+    t.datetime "end_date_time",   default: '2016-10-03 17:53:40'
+    t.integer  "cost_daily",      default: 0,                     null: false
+    t.integer  "cost_monthly",    default: 0
+    t.integer  "cost_quartly",    default: 0
+    t.integer  "cost_halfyearly", default: 0
+    t.integer  "cost_yearly",     default: 0
+    t.string   "status",          default: "Active"
+    t.datetime "created_at",                                      null: false
+    t.datetime "updated_at",                                      null: false
+    t.index ["end_date_time"], name: "index_offers_on_end_date_time", using: :btree
     t.index ["offer_name"], name: "index_offers_on_offer_name", using: :btree
     t.index ["service_id"], name: "index_offers_on_service_id", using: :btree
   end
@@ -145,6 +148,8 @@ ActiveRecord::Schema.define(version: 20160829042928) do
     t.string   "caption",                                              default: ""
     t.string   "details",         limit: 1000,                         default: ""
     t.string   "address",         limit: 1000
+    t.integer  "visits",                                               default: 0
+    t.integer  "searched",                                             default: 0
     t.datetime "created_at",                                                                   null: false
     t.datetime "updated_at",                                                                   null: false
     t.index ["location_id"], name: "index_shops_on_location_id", using: :btree

@@ -2,24 +2,6 @@
 <!-- page content -->
 <div class="right_col" role="main">
     <div class="">
-        <div class="page-title">
-            <div class="title_left">
-                <h3>Plain Page</h3>
-            </div>
-
-            <div class="title_right">
-                <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
-                    <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Search for...">
-                        <span class="input-group-btn">
-                            <button class="btn btn-default" type="button">Go!</button>
-                        </span>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="clearfix"></div>
-
         <div class="row">
 
             <div class="col-md-12 col-sm-12 col-xs-12">
@@ -29,6 +11,8 @@
                         <div class="clearfix"></div>
                     </div>
                     <div class="x_content">
+
+                        <%= link_to("Add service", {:action => 'add_service', :shop_id => @shop.id}, :class => 'btn-success btn') %>
                         
                         <table id="datatable" class="table table-striped jambo_table bulk_action">
                         <thead>
@@ -46,29 +30,91 @@
 
                         <tbody>
                             <% @services.each do |obj| %>
-                                <tr>
-                                    <td><%= obj.name %></td>
-                                    <td><%= obj.cost_daily %></td>
-                                    <td><%= obj.cost_monthly %></td>
-                                    <td><%= obj.cost_quartly %></td>
-                                    <td><%= obj.cost_halfyearly %></td>
-                                    <td><%= obj.cost_yearly %></td>
-                                    <td>
-                                        <!-- if offer exist -->
-                                        <% if obj.offers.present? %>
-                                            <%= link_to("Edit Offer", {:action => 'edit_offer', :service_id => obj.id, :offer_id => obj.offers.last.id}, :class => 'btn-info btn') %>
-                                        <% else %>
-                                            <%= link_to("Add Offer", {:action => 'add_offer', :service_id => obj.id}, :class => 'btn-success btn') %>
-                                        <% end %>
-                                         <%= link_to("Edit", {:action => 'edit_service', :service_id => obj.id, :shop_id => @shop.id}, :class     => 'btn-primary btn') %>
-                                        <%= link_to("Delete", {:action => 'delete_service', :service_id => obj.id, :shop_id => @shop.id}, :class => 'btn-danger btn') %>                                                                               
-                                    </td>
-                                </tr>
+                                <%if obj.offers.empty? %>
+                                    <tr>
+                                        <td><%= obj.name %></td>
+                                        <td><% if obj.cost_daily > 0%>
+                                                <%= obj.cost_daily %>
+                                            <% end %>
+                                        </td>
+                                        <td><%if obj.cost_monthly > 0%>
+                                                <%= obj.cost_monthly %>
+                                            <% end %>
+                                        </td>
+                                        <td><% if obj.cost_quartly > 0%>
+                                                <%= obj.cost_quartly %>
+                                            <% end %>
+                                        </td>
+                                        <td><% if obj.cost_halfyearly > 0 %>
+                                                <%= obj.cost_halfyearly %>
+                                            <%end %>
+                                        </td>
+                                        <td><%if obj.cost_yearly > 0%>
+                                                <%= obj.cost_yearly %>
+                                            <% end %>
+                                        </td>
+                                        <td>
+                                            
+                                            <%= link_to("Add Offer", {:action => 'add_offer', :service_id => obj.id, :shop_id => @shop.id}, :class => 'btn-success btn') %>
+                                            <%= link_to("Edit", {:action => 'edit_service', :service_id => obj.id, :shop_id => @shop.id}, :class     => 'btn-primary btn') %>
+                                            <%= link_to("Delete", {:action => 'delete_service', :service_id => obj.id, :shop_id => @shop.id}, :class => 'btn-danger btn') %>                                                                               
+                                        </td>
+                                    </tr>
+                                <% else %>
+                                    <tr>
+                                        <td><%= obj.name %></td>
+                                        <td><% if obj.cost_daily > 0%>
+                                                <% if obj.offers.first.cost_daily > 0%>
+                                                    <span style="text-decoration: line-through"> <%= obj.cost_daily %></span> <span style="color: #FF0000"> <%= obj.offers.first.cost_daily %></span> 
+                                                <% else %>
+                                                    <%= obj.cost_daily%>
+                                                <% end %>
+                                            <% end %></td>
+                                        
+                                        <td><% if obj.cost_monthly > 0%>
+                                                <% if obj.offers.first.cost_monthly > 0%>
+                                                    <span style="text-decoration: line-through"> <%= obj.cost_monthly %></span> <span style="color: #FF0000"> <%= obj.offers.first.cost_monthly %></span> 
+                                                <% else %>
+                                                    <%=obj.cost_monthly%>
+                                                <% end %>
+                                            <% end %></td>
+                                        
+                                        <td><% if obj.cost_quartly > 0%> 
+                                                <% if obj.offers.first.cost_quartly > 0%>
+                                                    <span style="text-decoration: line-through"> <%= obj.cost_quartly %></span> <span style="color: #FF0000"> <%= obj.offers.first.cost_quartly %></span> 
+                                                <%else%>
+                                                    <%=obj.cost_quartly%>
+                                                <%end%>
+                                            <% end %></td>
+                                        
+                                        <td><% if obj.cost_halfyearly > 0%>
+                                                <% if obj.offers.first.cost_halfyearly > 0%>
+                                                    <span style="text-decoration: line-through"> <%= obj.cost_halfyearly %></span> <span style="color: #FF0000"> <%= obj.offers.first.cost_halfyearly %></span>
+                                                <%else%>
+                                                    <%=obj.cost_halfyearly%>
+                                                <%end%>
+                                            <% end %></td>
+                                        
+                                        <td><%if obj.cost_yearly > 0%>
+                                                <% if obj.offers.first.cost_yearly > 0%>
+                                                    <span style="text-decoration: line-through"> <%= obj.cost_yearly %></span> <span style="color: #FF0000"> <%= obj.offers.first.cost_yearly %></span> 
+                                                <%else%>
+                                                    <%= obj.cost_yearly%>
+                                                <%end%>
+                                            <% end %></td>
+                                        <td>
+                                            
+                                            <%= link_to("Edit Offer", {:action => 'edit_offer', :service_id => obj.id, :offer_id => obj.offers.last.id, :shop_id => @shop.id}, :class => 'btn-info btn') %>
+                                            
+                                            <%= link_to("Edit", {:action => 'edit_service', :service_id => obj.id, :shop_id => @shop.id}, :class     => 'btn-primary btn') %>
+
+                                            <%= link_to("Delete", {:action => 'delete_service', :service_id => obj.id, :shop_id => @shop.id}, :class => 'btn-danger btn') %>                                                                               
+                                        </td>
+                                    </tr>
+                                <% end %>
                             <% end %>
                         </tbody>
                     </table>
-
-                    <%= link_to("Add service", {:action => 'add_service', :shop_id => @shop.id}, :class => 'btn-success btn') %>
 
                     </div>
                 </div>

@@ -27,7 +27,9 @@
         <div class="menu_section">
           <h3>&nbsp;</h3>
           <ul class="nav side-menu">
-            <li><a href="#"><i class="fa fa-home"></i> Home </a>
+            <li>
+              <!-- <a href="#"><i class="fa fa-home"></i> Home </a> -->
+              <%= link_to "<i class='fa fa-home'></i><span class='nav-label'> Home <span>".html_safe, root_path, method: :get %>
               <!-- <ul class="nav child_menu" style="display: none">
                 <li><a href="index.html">Dashboard</a>
                 </li>
@@ -37,7 +39,9 @@
                 </li>
               </ul> -->
             </li>
-            <li><a href="#"><i class="fa fa-desktop"></i> My Shops </span></a>
+            <li>
+              <!-- <a href="#"><i class="fa fa-desktop"></i> My Shops </span></a> -->
+              <%= link_to "<i class='fa fa-desktop'></i><span class='nav-label'> My Shops <span>".html_safe, shops_index_path , method: :get %>
               <!-- <ul class="nav child_menu" style="display: none">
                 <li><a href="form.html">General Form</a>
                 </li>
@@ -53,7 +57,10 @@
                 </li>
               </ul> -->
             </li>
-            <li><a href="#"><i class="fa fa-edit"></i> Edit Profile </a>
+            <li><!-- 
+               <%= link_to "<i class='fa fa-edit'></i><span class='nav-label'> Edit Profile <span>".html_safe, users_registration_edit_path , method: :get %> -->
+               <a href="#"><i class="fa fa-edit"></i> Edit Profile </a>
+
               <!-- <ul class="nav child_menu" style="display: none">
                 <li><a href="general_elements.html">General Elements</a>
                 </li>
@@ -75,7 +82,8 @@
                 </li>
               </ul> -->
             </li>
-            <li><a href="#"><i class="fa fa-table"></i> Bookings </a>
+            <li>
+              <a href="#"><i class="fa fa-table"></i> Bookings </a>
               <!-- <ul class="nav child_menu" style="display: none">
                 <li><a href="tables.html">Tables</a>
                 </li>
@@ -98,7 +106,10 @@
               </ul> -->
             </li>
 
-            <li><a href="#"><i class="fa fa-power-off"></i> Logout</a>
+            <li>
+              <!-- <a href="#"><i class="fa fa-power-off"></i> Logout</a> -->
+              <%= link_to "<i class='fa fa-power-off'></i><span class='nav-label'> Logout<span>".html_safe, destroy_user_session_path , method: :get %>
+
               <!-- <ul class="nav child_menu" style="display: none">
                 <li><a href="chartjs.html">Chart JS</a>
                 </li>
@@ -120,7 +131,7 @@
       <!-- /sidebar menu -->
 
       <!-- /menu footer buttons -->
-      <div class="sidebar-footer hidden-small">
+     <!--  <div class="sidebar-footer hidden-small">
         <a data-toggle="tooltip" data-placement="top" title="Settings">
           <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
         </a>
@@ -133,7 +144,7 @@
         <a data-toggle="tooltip" data-placement="top" title="Logout">
           <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
         </a>
-      </div>
+      </div> -->
       <!-- /menu footer buttons -->
     </div>
   </div>

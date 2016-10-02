@@ -5,19 +5,21 @@
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel" style="height:600px;">
                     <div class="x_title">
-                        <h3> Delete Shop </h3>
+                        <h3> Delete Offer </h3>
                         <div class="clearfix"></div>
                     </div>
                     <div class="x_content">
 
-                    	<%= form_for(:shop, :url => {:action => 'destroy', :id => @shop.id}) do |f| %>
+                        <%= form_for(:offer, :url => {:action => 'destroy_offer',:offer_id => @offer.id}) do |f| %>
 
-							<h2>Are you sure you want to permanently delete this Shop ?</h2>
+                            <h2>Are you sure you want to permanently delete this offer ?</h2><br>
 
-						    <h2>'<%= @shop.name %>'</h2>
+                            <h2>'<%= @offer.offer_name %>'</h2>
 
-						    <%= submit_tag("Delete", :class => "btn-danger btn") %>
-						<% end %>
+                            <h2>from '<%= @offer.service.name %>' service in '<%= @offer.shop.name%>' Shop</h2><br>
+
+                            <%= submit_tag("Delete", :class => "btn-danger btn") %>
+                        <% end %>
                     </div>
                 </div>
             </div>

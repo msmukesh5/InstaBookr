@@ -20,6 +20,8 @@ class CreateShops < ActiveRecord::Migration[5.0]
     	t.string :caption, :default => ""
     	t.string :details, :default => "", :limit => 1000
     	t.string :address, :limit => 1000
+        t.integer :visits, :default => 0
+        t.integer :searched, :default => 0
       	t.timestamps
     end
 

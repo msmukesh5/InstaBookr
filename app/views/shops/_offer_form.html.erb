@@ -1,0 +1,65 @@
+<form class="form-horizontal form-label-left">
+	<div class="form-group">
+		<label class="control-label col-md-2 col-sm-2 col-xs-12">Offer name</label>
+		<div class="col-md-9 col-sm-9 col-xs-12">
+			<%= f.text_field(:offer_name, :class => "form-control")%>
+		</div>
+		<label class="col-md-1 col-sm-1 col-xs-12" style="text-color: #00008B"><%= @service.name %></label>
+	</div>
+	
+	<%= f.hidden_field(:shop_id, :class => "form-control", :value => @shop.id)%>
+	<%= f.hidden_field(:service_id, :class => "form-control", :value => @service.id)%>
+
+	<div class="form-group">
+		<label class="control-label col-md-2 col-sm-2 col-xs-12">Start date time</label>
+		<div class="col-md-9 col-sm-9 col-xs-12">
+			<%= f.text_field(:start_date_time, :class => "form-control")%>
+		</div>
+		<label class="col-md-1 col-sm-1 col-xs-12" style="color: #00008B">original cost</label>
+	</div>
+
+	<div class="form-group">
+		<label class="control-label col-md-2 col-sm-2 col-xs-12">End date time</label>
+		<div class="col-md-9 col-sm-9 col-xs-12">
+			<%= f.text_field(:end_date_time, :class => "form-control")%>
+		</div>
+		<label class="col-md-1 col-sm-1 col-xs-12" style="color: #00008B"> - </label>
+	</div>
+
+	<div class="form-group">
+		<label class="control-label col-md-2 col-sm-2 col-xs-12">Daily Cost</label>
+		<div class="col-md-9 col-sm-9 col-xs-12">
+			<%= f.text_field(:cost_daily, :class => "form-control")%>
+		</div>
+		<label class="col-md-1 col-sm-1 col-xs-12" style="color: #00008B"><%= @service.cost_daily %></label>
+	</div>
+	<div class="form-group">
+		<label class="control-label col-md-2 col-sm-2 col-xs-12">Monthly Cost</label>
+		<div class="col-md-9 col-sm-9 col-xs-12">
+			<%= f.text_field(:cost_monthly, :class => "form-control")%>
+		</div>
+		<label class="col-md-1 col-sm-1 col-xs-12" style="color: #00008B"><%= @service.cost_monthly %></label>
+
+	</div>
+	<div class="form-group">
+		<label class="control-label col-md-2 col-sm-2 col-xs-12">3 Months Cost</label>
+		<div class="col-md-9 col-sm-9 col-xs-12">
+			<%= f.text_field(:cost_quartly, :class => "form-control")%>
+		</div>
+		<label class="col-md-1 col-sm-1 col-xs-12" style="color: #00008B"><%= @service.cost_quartly %></label>
+	</div>
+	<div class="form-group">
+		<label class="control-label col-md-2 col-sm-2 col-xs-12">6 Months Cost</label>
+		<div class="col-md-9 col-sm-9 col-xs-12">
+			<%= f.text_field(:cost_halfyearly, :class => "form-control")%>
+		</div>
+		<label class="col-md-1 col-sm-1 col-xs-12" style="color: #00008B"><%= @service.cost_halfyearly %></label>
+	</div>
+	<div class="form-group">
+		<label class="control-label col-md-2 col-sm-2 col-xs-12">1 Year Cost</label>
+		<div class="col-md-9 col-sm-9 col-xs-12">
+			<%= f.text_field(:cost_yearly, :class => "form-control")%>
+		</div>
+		<label class="col-md-1 col-sm-1 col-xs-12" style="color: #00008B"><%= @service.cost_yearly %></label>
+	</div>
+</form>

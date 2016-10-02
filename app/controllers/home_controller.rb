@@ -20,6 +20,7 @@ class HomeController < ApplicationController
 		elsif @user.is_owner
 			if !@user.shops.blank?
 				@shops = @user.shops.first
+				@shops.inspect
 				@bookings = @shops.bookings
 			end
 		else

@@ -110,6 +110,10 @@
                     </div>
                 </div>
             </div>
+        <% elsif !@user.shops.empty? %>
+
+            <%= render '/home/contact_admin' %>
+
         <% else %>
             <!-- user has no shops so there would be link to create a shop initially -->
             <%= render '/home/shop_creation_link' %>

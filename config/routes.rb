@@ -4,6 +4,16 @@ Rails.application.routes.draw do
   
   root to: 'home#index'
 
+  get '/shops/index', to: 'shops#index'
+
+  get '/shops/services', to: 'shops#services'
+
+  get 'users/registration/edit', to: 'devise/registrations#edit'
+
+
+
+
+
   
   
 
