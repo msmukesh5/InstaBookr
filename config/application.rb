@@ -17,5 +17,7 @@ module InstaBookr
 
     config.assets.paths << Rails.root.join('vendor', 'assets', 'components', 'gentelella', 'production','documemtaion')
 
+    config.serve_static_assets = true
+
   end
 end
