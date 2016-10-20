@@ -4,21 +4,21 @@
         <div class="col-md-12 col-sm-12 col-xs-12">
             <div class="x_panel">
                 <div class="x_title">
-                    <h2> Add Service Offer </h2>
+                    <h2> Edit Customer Handling </h2>
                     <div class="clearfix"></div>
                 </div>
                 <div class="x_content">
 
-                    <%= form_for(:offer, :url => {:action => 'create_offer', :id => @offer.id, :shop_id  => @shop.id}) do |f| %>
+                    <%= form_for(:free_busy, :url => {:action => 'update', :id => @free_busy.id, :shop_id  => @shop.id}) do |f| %>
 
-                        <% @action = "add_offer" %>
+                        <% @action = "edit freebusy" %>
 
                         <div class="row">
-                            <%= render(:partial => "offer_form", :locals => {:f => f}) %>
+                            <%= render(:partial => "form", :locals => {:f => f}) %>
                             <div class="col-sm-8 col-sm-offset-2">
                                 <br/>
                                 <%= submit_tag("Submit", :class => "btn-primary btn") %>
-                                <%= link_to("Cancel",{:controller => 'shops', :action => 'services', :shop_id => @shop.id}, :class => "btn-danger btn") %>
+                                <%= link_to("Cancel",{:controller => 'free_busy', :action => 'index', :id => @shop.id}, :class => "btn-danger btn") %>
                             </div>
                         </div>
                         <br/><br/>
@@ -28,4 +28,3 @@
         </div>
     </div>
 </div>
-<!-- /page content -->

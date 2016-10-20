@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160829042928) do
+ActiveRecord::Schema.define(version: 20161020174234) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -77,6 +77,7 @@ ActiveRecord::Schema.define(version: 20160829042928) do
     t.integer  "time_slot_21"
     t.integer  "time_slot_22"
     t.integer  "time_slot_23"
+    t.integer  "time_slot_24"
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false
     t.index ["service_id"], name: "index_free_busies_on_service_id", using: :btree
@@ -88,14 +89,52 @@ ActiveRecord::Schema.define(version: 20160829042928) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "oauth_access_grants", force: :cascade do |t|
+    t.integer  "resource_owner_id", null: false
+    t.integer  "application_id",    null: false
+    t.string   "token",             null: false
+    t.integer  "expires_in",        null: false
+    t.text     "redirect_uri",      null: false
+    t.datetime "created_at",        null: false
+    t.datetime "revoked_at"
+    t.string   "scopes"
+    t.index ["token"], name: "index_oauth_access_grants_on_token", unique: true, using: :btree
+  end
+
+  create_table "oauth_access_tokens", force: :cascade do |t|
+    t.integer  "resource_owner_id"
+    t.integer  "application_id"
+    t.string   "token",                               null: false
+    t.string   "refresh_token"
+    t.integer  "expires_in"
+    t.datetime "revoked_at"
+    t.datetime "created_at",                          null: false
+    t.string   "scopes"
+    t.string   "previous_refresh_token", default: "", null: false
+    t.index ["refresh_token"], name: "index_oauth_access_tokens_on_refresh_token", unique: true, using: :btree
+    t.index ["resource_owner_id"], name: "index_oauth_access_tokens_on_resource_owner_id", using: :btree
+    t.index ["token"], name: "index_oauth_access_tokens_on_token", unique: true, using: :btree
+  end
+
+  create_table "oauth_applications", force: :cascade do |t|
+    t.string   "name",                      null: false
+    t.string   "uid",                       null: false
+    t.string   "secret",                    null: false
+    t.text     "redirect_uri",              null: false
+    t.string   "scopes",       default: "", null: false
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+    t.index ["uid"], name: "index_oauth_applications_on_uid", unique: true, using: :btree
+  end
+
   create_table "offers", force: :cascade do |t|
     t.string   "offer_name"
     t.string   "uuid"
     t.string   "code"
     t.integer  "service_id",      default: 0
     t.integer  "shop_id",         default: 0
-    t.datetime "start_date_time", default: '2016-10-02 17:53:40'
-    t.datetime "end_date_time",   default: '2016-10-03 17:53:40'
+    t.datetime "start_date_time", default: '2016-10-20 17:12:42'
+    t.datetime "end_date_time",   default: '2016-10-21 17:12:42'
     t.integer  "cost_daily",      default: 0,                     null: false
     t.integer  "cost_monthly",    default: 0
     t.integer  "cost_quartly",    default: 0
@@ -204,4 +243,6 @@ ActiveRecord::Schema.define(version: 20160829042928) do
     t.index ["unlock_token"], name: "index_users_on_unlock_token", unique: true, using: :btree
   end
 
+  add_foreign_key "oauth_access_grants", "oauth_applications", column: "application_id"
+  add_foreign_key "oauth_access_tokens", "oauth_applications", column: "application_id"
 end

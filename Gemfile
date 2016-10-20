@@ -35,7 +35,7 @@ gem 'jbuilder', '~> 2.5'
 # gem 'capistrano-rails', group: :development
 
 gem 'devise'
-gem 'rufus-scheduler', '~> 3.2'
+gem 'doorkeeper'
 
 
 group :test do

@@ -14,8 +14,6 @@
 							</div>
 
 							<div class="panel-body no-padding" style="display: block;">
-
-								<%= link_to(" (+) Add Services to shop", {:action => 'services', :shop_id =>@shops.first.id }, :class => "btn-success btn") %> <br/>
 								<table class="table table-striped">
 									<thead>
 										<tr class="warning">
@@ -23,7 +21,6 @@
 											<th>Name</th>
 											<th>Location</th>
 											<th>Owner</th>
-											<th>Status</th>
 											<th>Actions</th>
 										</tr>
 									</thead>
@@ -37,10 +34,10 @@
 													<% location = Location.find(obj.location_id)%>
 													<td><%= location.location%></td>
 													<td><%= current_user.email %></td>
-													<td><%= obj.status %></td>
 													<td><%= link_to("Show", {:action => 'show', :id => obj.id}, :class => 'btn-info btn') %>
 												        <%= link_to("Edit", {:action => 'edit', :shop_id => obj.id}, :class => 'btn-primary btn') %>
 												        <%= link_to("Delete", {:action => 'delete', :id => obj.id}, :class => 'btn-danger btn') %>
+												        <%= link_to(" (+) Add Services to shop", {:action => 'services', :shop_id => obj.id }, :class => "btn-success btn") %>
 												    </td>
 												</tr>
 											<% end %>

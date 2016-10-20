@@ -7,12 +7,14 @@
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel" style="height:600px;">
                     <div class="x_title">
-                        <h2>Plain Page</h2>
+                        <h2><%= @shop.name%> Services</h2>
                         <div class="clearfix"></div>
                     </div>
                     <div class="x_content">
 
                         <%= link_to("Add service", {:action => 'add_service', :shop_id => @shop.id}, :class => 'btn-success btn') %>
+                        &nbsp; &nbsp;
+                        <%= link_to("Customer Handling", {:action => 'index',:controller => 'free_busy', :id => @shop.id}, :class => 'btn-primary btn') %>
                         
                         <table id="datatable" class="table table-striped jambo_table bulk_action">
                         <thead>
@@ -64,40 +66,40 @@
                                     <tr>
                                         <td><%= obj.name %></td>
                                         <td><% if obj.cost_daily > 0%>
-                                                <% if obj.offers.first.cost_daily > 0%>
-                                                    <span style="text-decoration: line-through"> <%= obj.cost_daily %></span> <span style="color: #FF0000"> <%= obj.offers.first.cost_daily %></span> 
+                                                <% if obj.offers.last.cost_daily > 0%>
+                                                    <span style="text-decoration: line-through"> <%= obj.cost_daily %></span> <span style="color: #FF0000"> <%= obj.offers.last.cost_daily %></span> 
                                                 <% else %>
                                                     <%= obj.cost_daily%>
                                                 <% end %>
                                             <% end %></td>
                                         
                                         <td><% if obj.cost_monthly > 0%>
-                                                <% if obj.offers.first.cost_monthly > 0%>
-                                                    <span style="text-decoration: line-through"> <%= obj.cost_monthly %></span> <span style="color: #FF0000"> <%= obj.offers.first.cost_monthly %></span> 
+                                                <% if obj.offers.last.cost_monthly > 0%>
+                                                    <span style="text-decoration: line-through"> <%= obj.cost_monthly %></span> <span style="color: #FF0000"> <%= obj.offers.last.cost_monthly %></span> 
                                                 <% else %>
                                                     <%=obj.cost_monthly%>
                                                 <% end %>
                                             <% end %></td>
                                         
                                         <td><% if obj.cost_quartly > 0%> 
-                                                <% if obj.offers.first.cost_quartly > 0%>
-                                                    <span style="text-decoration: line-through"> <%= obj.cost_quartly %></span> <span style="color: #FF0000"> <%= obj.offers.first.cost_quartly %></span> 
+                                                <% if obj.offers.last.cost_quartly > 0%>
+                                                    <span style="text-decoration: line-through"> <%= obj.cost_quartly %></span> <span style="color: #FF0000"> <%= obj.offers.last.cost_quartly %></span> 
                                                 <%else%>
                                                     <%=obj.cost_quartly%>
                                                 <%end%>
                                             <% end %></td>
                                         
                                         <td><% if obj.cost_halfyearly > 0%>
-                                                <% if obj.offers.first.cost_halfyearly > 0%>
-                                                    <span style="text-decoration: line-through"> <%= obj.cost_halfyearly %></span> <span style="color: #FF0000"> <%= obj.offers.first.cost_halfyearly %></span>
+                                                <% if obj.offers.last.cost_halfyearly > 0%>
+                                                    <span style="text-decoration: line-through"> <%= obj.cost_halfyearly %></span> <span style="color: #FF0000"> <%= obj.offers.last.cost_halfyearly %></span>
                                                 <%else%>
                                                     <%=obj.cost_halfyearly%>
                                                 <%end%>
                                             <% end %></td>
                                         
                                         <td><%if obj.cost_yearly > 0%>
-                                                <% if obj.offers.first.cost_yearly > 0%>
-                                                    <span style="text-decoration: line-through"> <%= obj.cost_yearly %></span> <span style="color: #FF0000"> <%= obj.offers.first.cost_yearly %></span> 
+                                                <% if obj.offers.last.cost_yearly > 0%>
+                                                    <span style="text-decoration: line-through"> <%= obj.cost_yearly %></span> <span style="color: #FF0000"> <%= obj.offers.last.cost_yearly %></span> 
                                                 <%else%>
                                                     <%= obj.cost_yearly%>
                                                 <%end%>

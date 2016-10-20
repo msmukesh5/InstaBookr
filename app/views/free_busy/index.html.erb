@@ -1,0 +1,51 @@
+<div class="right_col" role="main">
+    <div class="">
+        <div class="row">
+
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel" style="height:600px;">
+                    <div class="x_title">
+                        <h2><%= @shop.name%> Services</h2>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+
+                        <%= link_to("Add service", {:action => 'add_service',:controller => 'shops', :shop_id => @shop.id}, :class => 'btn-success btn') %>
+                        
+                        <table id="datatable" class="table table-striped jambo_table bulk_action">
+                        <thead>
+                            <tr class="headings">
+                                <th class="column-title">Service</th>
+                                <th class="column-title">Shop Time Slot</th>
+                                <th class="column-title">Shop Day Slot</th>
+                                <th class="column-title">Actions</th>
+                            </tr>
+                        </thead>
+
+
+                        <tbody>
+                            <% @services.each do |obj| %>
+                                <tr>
+                                    <td><%= obj.name %></td>
+                                    <td><%= @shop.time_slot_ids %></td>
+                                    <td><%= @shop.day_slot_ids %></td>
+                                    <td>
+                                    	<% if obj.free_busy.blank? %>
+	                                        <%= link_to("Add Customer Handling", {:action => 'add', :service_id => obj.id, :shop_id => @shop.id}, :class => 'btn-success btn') %>
+	                                    <% else %>
+	                                        <%= link_to("Edit Customer Handling", {:action => 'edit', :service_id => obj.id, :shop_id => @shop.id}, :class => 'btn-primary btn') %>
+	                                    <% end %>                                                                        
+                                    </td>
+                                </tr>
+                            <% end %>
+                        </tbody>
+                    	</table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /page content -->
+
+<!--Test Page specific JS -->

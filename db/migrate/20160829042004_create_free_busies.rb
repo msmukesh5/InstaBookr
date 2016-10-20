@@ -28,6 +28,7 @@ class CreateFreeBusies < ActiveRecord::Migration[5.0]
     	t.integer :time_slot_21, :defaut => 0
     	t.integer :time_slot_22, :defaut => 0
     	t.integer :time_slot_23, :defaut => 0
+        t.integer :time_slot_24, :defaut => 0
       	t.timestamps
     end
     add_index(:free_busies, :service_id)
