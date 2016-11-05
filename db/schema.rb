@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161020174234) do
+ActiveRecord::Schema.define(version: 20161105111226) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -154,18 +154,25 @@ ActiveRecord::Schema.define(version: 20161020174234) do
   end
 
   create_table "services", force: :cascade do |t|
-    t.string   "uuid",            limit: 20,                    null: false
-    t.string   "shop_id",                                       null: false
+    t.string   "uuid",                 limit: 20,                    null: false
+    t.string   "shop_id",                                            null: false
     t.string   "name"
-    t.integer  "cost_daily",                 default: 0,        null: false
-    t.integer  "cost_monthly",               default: 0
-    t.integer  "cost_quartly",               default: 0
-    t.integer  "cost_halfyearly",            default: 0
-    t.integer  "cost_yearly",                default: 0
-    t.string   "status",                     default: "Active"
-    t.datetime "created_at",                                    null: false
-    t.datetime "updated_at",                                    null: false
+    t.integer  "cost_daily",                      default: 0,        null: false
+    t.integer  "cost_monthly",                    default: 0
+    t.integer  "cost_quartly",                    default: 0
+    t.integer  "cost_halfyearly",                 default: 0
+    t.integer  "cost_yearly",                     default: 0
+    t.string   "status",                          default: "Active"
+    t.datetime "created_at",                                         null: false
+    t.datetime "updated_at",                                         null: false
+    t.integer  "shop_service_type_id"
     t.index ["shop_id"], name: "index_services_on_shop_id", using: :btree
+    t.index ["shop_service_type_id"], name: "index_services_on_shop_service_type_id", using: :btree
+  end
+
+  create_table "shop_service_types", force: :cascade do |t|
+    t.string  "name"
+    t.integer "service_type_id"
   end
 
   create_table "shops", force: :cascade do |t|

@@ -20,6 +20,17 @@ ServiceType.find_or_create_by(name: 'Gym')
 ServiceType.find_or_create_by(name: 'Salon')
 ServiceType.find_or_create_by(name: 'Sports Centre')
 
+if ShopServiceType.all.blank?
+	ShopServiceType.create(:name => 'Steam Bath',:service_type_id => ServiceType.find_by_name('Spa').id)
+	ShopServiceType.create(:name => 'Body Message',:service_type_id => ServiceType.find_by_name('Spa').id)
+	ShopServiceType.create(:name => 'Swimming',:service_type_id => ServiceType.find_by_name('Sports Centre').id)
+	ShopServiceType.create(:name => 'Archery',:service_type_id => ServiceType.find_by_name('Sports Centre').id)
+	ShopServiceType.create(:name => 'Cricket',:service_type_id => ServiceType.find_by_name('Sports Centre').id)
+	ShopServiceType.create(:name => 'Body Message',:service_type_id => ServiceType.find_by_name('Salon').id)
+	ShopServiceType.create(:name => 'Hair Cut',:service_type_id => ServiceType.find_by_name('Salon').id)
+	ShopServiceType.create(:name => 'Steam Bath',:service_type_id => ServiceType.find_by_name('Gym').id)
+end
+
 Location.find_or_create_by(location: 'New Town')
 Location.find_or_create_by(location: 'Salt Lake')
 Location.find_or_create_by(location: 'Sambalpur')
@@ -34,7 +45,7 @@ end
 # end
 
 
-Service.create! :uuid => "12345678900987655321", :shop_id => Shop.find_by_uuid("12345678900987654321").id, :name => 'Gym', :cost_daily => 100, :cost_monthly => 2000, :cost_quartly => 20000, :status => 'Active'
+Service.create! :uuid => "12345678900987655321", :shop_id => Shop.find_by_uuid("12345678900987654321").id, :name => 'Gym',:shop_service_type_id => ShopServiceType.find_by_name('Steam Bath').id, :cost_daily => 100, :cost_monthly => 2000, :cost_quartly => 20000, :status => 'Active'
 
 
 booking = Booking.where(:uuid => "b6f5f99c3cd867528568").first

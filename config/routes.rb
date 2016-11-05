@@ -14,6 +14,22 @@ Rails.application.routes.draw do
 
 
 
+  # api calls
+
+  namespace :api, defaults: {format: 'json'} do
+  	namespace :v1 do
+
+  		namespace :account do
+  			resources :users do
+  				get 'user_details', :on => :collection
+  				get 'app_data', :on => :collection
+          post 'get_shops_list', :on => :collection
+  			end
+  		end
+
+  	end
+  end
+
 
   
   

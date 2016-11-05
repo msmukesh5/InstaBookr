@@ -9,5 +9,7 @@ class Shop < ApplicationRecord
 	has_many :bookings
 
 	default_scope {order('id ASC')}
+
+	
 	
 end
